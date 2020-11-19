@@ -1,0 +1,37 @@
+.navButton {
+  color: var(--c-text-color);
+  padding: 10px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navButton svg {
+  font-size: 26px;
+  /* color: tomato; */
+}
+
+.navButton:hover {
+  background-color: var(--c-theme-10);
+}
+.navButtonSelected {
+  color: var(--c-theme);
+}
+
+.notify {
+  position: absolute;
+  height: 17px;
+  /* min-width: 17px; */
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  left: 20px;
+  top: 5px;
+  background-color: var(--c-theme);
+  color: var(--c-text-color);
+  font-size: 11px;
+  border: 1px solid var(--c-black);
+}
