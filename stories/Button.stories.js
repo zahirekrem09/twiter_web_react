@@ -37,7 +37,6 @@ export const Theme = () => {
       <ThemeButton>Tweet</ThemeButton>
       <ThemeButton full>Full Tweet</ThemeButton>
       <ThemeButton full xl>
-        {" "}
         Big Tweet
       </ThemeButton>
     </Stack>

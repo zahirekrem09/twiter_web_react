@@ -1,6 +1,8 @@
 import React from "react";
+import Avatar from "../components/Avatar";
 
 import * as Icons from "../components/icons";
+import ProfilBox from "../components/ProfileBox";
 
 export default {
   title: "Icons",
@@ -38,3 +40,12 @@ export const Icon = () => (
     <Icons.Twitter />
   </div>
 );
+
+export const AvatarPhoto = () => (
+  <Avatar
+    src="https://avatars3.githubusercontent.com/u/63649974?s=460&u=2383105e4cd97181c5bc88eaf82909bbda6929b3&v=4"
+    alt="Ekrem"
+  />
+);
+
+export const ProfileAvatar = () => <ProfilBox />;

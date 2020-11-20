@@ -1,0 +1,26 @@
+.profilBox {
+  /* display: flex;
+  align-items: center; */
+  padding: 10px;
+  /* border-radius: 99px;
+  background-color: gray; */
+}
+
+.body {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.body * {
+  display: block;
+}
+.arrow {
+  margin-left: auto;
+}
+
+.profilBox:hover {
+  color: var(--c-text-color);
+}
+
+.slug {
+  color: var(--c-gray);
+}

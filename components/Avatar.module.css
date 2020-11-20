@@ -1,0 +1,10 @@
+.avatar {
+  width: 47px;
+  flex-shrink: 0;
+}
+
+.avatar img {
+  width: 100%;
+  display: block;
+  border-radius: 99px;
+}
