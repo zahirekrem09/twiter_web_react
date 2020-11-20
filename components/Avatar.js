@@ -5,10 +5,11 @@ import cn from "classnames";
 function Avatar({
   src = "https://avatars3.githubusercontent.com/u/63649974?s=460&u=2383105e4cd97181c5bc88eaf82909bbda6929b3&v=4",
   alt = "Ekrem",
+  size = 47,
   children,
 }) {
   return (
-    <div className={cn(styles.avatar)}>
+    <div className={cn(styles.avatar)} style={{ width: size, height: size }}>
       <img src={src} alt={alt} />
     </div>
   );

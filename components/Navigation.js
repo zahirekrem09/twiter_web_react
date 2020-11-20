@@ -1,59 +1,26 @@
 import React from "react";
 
-import MenuButton from "./MenuButton";
-import {
-  Bookmark,
-  Explore,
-  Home,
-  Lists,
-  Messages,
-  More,
-  Profile,
-  Twitter,
-  Notification,
-} from "./icons";
-
-import Title from "./Title";
+import { MENU } from "../constants/index";
 import styles from "./Navigation.module.css";
 
-function Navigation({ flat = false, selectedKey }) {
+import MenuButton from "./MenuButton";
+import Title from "./Title";
+
+function Navigation({ flat = false, selectedKey = "home" }) {
   return (
     <nav className={styles.nav}>
-      <MenuButton>
-        <Twitter />
-      </MenuButton>
-      <MenuButton selected={selectedKey === "Home"}>
-        <Home />
-        <Title>Home</Title>
-      </MenuButton>
-      <MenuButton>
-        <Explore />
-        <Title>Explore</Title>
-      </MenuButton>
-      <MenuButton notify={44}>
-        <Notification />
-        <Title>Notification</Title>
-      </MenuButton>
-      <MenuButton>
-        <Messages />
-        <Title>Messages</Title>
-      </MenuButton>
-      <MenuButton>
-        <Bookmark />
-        <Title>Bookmark</Title>
-      </MenuButton>
-      <MenuButton>
-        <Lists />
-        <Title>Lists</Title>
-      </MenuButton>
-      <MenuButton>
-        <Profile />
-        <Title>Profile</Title>
-      </MenuButton>
-      <MenuButton>
-        <More />
-        <Title>More</Title>
-      </MenuButton>
+      <p>{JSON.stringify(flat)}</p>
+
+      {MENU.map((menu, i) => {
+        const showTitle = !flat && menu.title.length > 0;
+        const selected = selectedKey === menu.key;
+        return (
+          <MenuButton key={i} notify={menu.notify} selected={selected}>
+            {selected ? menu.iconSelected : menu.icon}
+            {showTitle && <Title>{menu.title}</Title>}
+          </MenuButton>
+        );
+      })}
     </nav>
   );
 }

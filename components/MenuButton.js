@@ -8,8 +8,8 @@ function MenuButton({ notify, selected, children, ...props }) {
     <Button
       className={cn(styles.navButton, selected && styles.navButtonSelected)}
     >
+      {notify > 0 && <span className={styles.notify}>{notify}</span>}
       {children}
-      {notify && <span className={styles.notify}>{notify}</span>}
     </Button>
   );
 }

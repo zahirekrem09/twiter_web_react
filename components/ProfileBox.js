@@ -6,15 +6,17 @@ import { ArrowBottom } from "./icons";
 import styles from "./ProfilBox.module.css";
 import Text from "./Text";
 
-function ProfilBox({ slug = "ekremsarı", name = "Ekrem SARI" }) {
+function ProfilBox({ flat = false, slug = "ekremsarı", name = "Ekrem" }) {
   return (
     <Button className={cn(styles.profilBox)}>
-      <Avatar />
-      <div className={styles.body}>
-        <Text bold>{name}</Text>
-        <Text className={styles.slug}>@{slug}</Text>
-      </div>
-      <ArrowBottom className={styles.arrow} />
+      <Avatar size={39} />
+      {!flat && (
+        <div className={styles.body}>
+          <Text bold>{name}</Text>
+          <Text className={styles.slug}>@{slug}</Text>
+        </div>
+      )}
+      {!flat && <ArrowBottom className={styles.arrow} />}
     </Button>
   );
 }

@@ -1,3 +1,11 @@
 .main {
   background-color: grey;
+  border-left: 1px;
+  border-style: solid;
+  border-color: var(--c-border-color);
+}
+
+@media only screen and (min-width: 990px) {
+  .main {
+  }
 }

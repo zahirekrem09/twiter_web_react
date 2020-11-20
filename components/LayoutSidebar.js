@@ -11,10 +11,16 @@ function LayoutSidebar({ flat }) {
     <div className={cn(styles.sidebar)}>
       {/* flat navbardaki textleri silicek */}
       <Navigation flat={flat} />
-      <ThemeButton xl full>
-        Tweet
-      </ThemeButton>
-      <ProfilBox />
+      <div className={styles.tweet}>
+        <ThemeButton xl full={!flat}>
+          {flat ? "aa" : "Tweet"}
+        </ThemeButton>
+      </div>
+
+      <div className={styles.profile}>
+        {" "}
+        <ProfilBox flat={flat} />
+      </div>
     </div>
   );
 }

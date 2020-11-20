@@ -1,14 +1,22 @@
 .layout {
   display: grid;
-  grid-template-columns: 230px 1fr;
-  background-color: #333;
+  grid-template-columns: auto 1fr;
+  /* background-color: #333; */
   min-height: 100vh;
-  /* margin-left: auto;
-  margin-right: auto; */
+  max-width: 670px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media only screen and (min-width: 990px) {
   .layout {
-    grid-template-columns: 230px 1fr 230px;
+    max-width: 1060px;
+    grid-template-columns: auto 1fr 380px;
+  }
+}
+
+@media only screen and (min-width: 1270px) {
+  .layout {
+    max-width: 1270px;
   }
 }
