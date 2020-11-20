@@ -1,11 +1,27 @@
 import React from "react";
+import Link from "next/link";
 import styles from "./Button.module.css";
 import cn from "classnames";
 
-function Button({ full = false, xl = false, children, className, ...props }) {
+function LinkButton({ href, children, ...props }) {
   return (
-    <button
-      type="button"
+    <Link href={href}>
+      <a {...props}>{children}</a>
+    </Link>
+  );
+}
+function BaseButton({ children, ...props }) {
+  return (
+    <button type="button" {...props}>
+      {children}
+    </button>
+  );
+}
+
+function Button({ full = false, xl = false, children, className, ...props }) {
+  const ButtonComp = props.href ? LinkButton : BaseButton;
+  return (
+    <ButtonComp
       className={cn(
         styles.button,
         full && styles.fullButton,
@@ -15,7 +31,7 @@ function Button({ full = false, xl = false, children, className, ...props }) {
       {...props}
     >
       {children}
-    </button>
+    </ButtonComp>
   );
 }
 

@@ -3,10 +3,12 @@ import Button from "./Button";
 import styles from "./MenuButton.module.css";
 import cn from "classnames";
 
-function MenuButton({ notify, selected, children, ...props }) {
+function MenuButton({ href, notify, selected, children, ...props }) {
   return (
     <Button
       className={cn(styles.navButton, selected && styles.navButtonSelected)}
+      href={href}
+      {...props}
     >
       {notify > 0 && <span className={styles.notify}>{notify}</span>}
       {children}

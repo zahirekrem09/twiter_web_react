@@ -10,6 +10,10 @@
   .tweet {
     width: 100%;
   }
+  .sidebar {
+    padding-right: 40px;
+    align-items: flex-start;
+  }
 }
 .profile {
   margin-top: auto;
