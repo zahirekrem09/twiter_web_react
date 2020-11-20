@@ -16,7 +16,7 @@ import {
 import Title from "./Title";
 import styles from "./Navigation.module.css";
 
-function Navigation({ selectedKey }) {
+function Navigation({ flat = false, selectedKey }) {
   return (
     <nav className={styles.nav}>
       <MenuButton>
