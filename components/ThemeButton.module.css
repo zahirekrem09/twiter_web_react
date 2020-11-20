@@ -1,0 +1,13 @@
+.themeButton {
+  background-color: var(--c-theme);
+  color: var(--c-text-color);
+  padding-right: 15px;
+  padding-left: 15px;
+  height: 40px;
+  font-weight: bold;
+}
+
+.themeButton:hover {
+  color: var(--c-text-color);
+  background-color: var(--c-theme);
+}

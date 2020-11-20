@@ -1,4 +1,23 @@
 .button {
   cursor: pointer;
   background: transparent;
+  color: var(--c-text-color);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--fade) all;
+}
+
+.button:hover {
+  color: var(--c-theme);
+  background-color: var(--c-theme-10);
+}
+
+.fullButton {
+  width: 100% !important;
+}
+
+.xlButton {
+  height: 47px !important;
 }
