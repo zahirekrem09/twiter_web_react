@@ -1,0 +1,49 @@
+.body {
+  display: grid;
+  gap: 15px;
+  grid-template-areas: "avatar content";
+  grid-template-columns: 50px 1fr;
+  padding: 30px;
+  border-bottom: 1px solid var(--c-border-color);
+}
+.avatar {
+  grid-area: avatar;
+}
+.content {
+  grid-area: content;
+}
+
+.textarea {
+  resize: none;
+  background-color: transparent;
+  outline: 0;
+  color: var(--c-text-color);
+  font-size: 19px;
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid var(--c-theme-10);
+}
+
+.footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* visibility: hidden;
+  display: none; */
+}
+
+.textarea:focus {
+}
+
+.iconBar {
+  margin-left: -8px;
+  display: flex;
+  align-items: center;
+}
+.iconBar svg {
+  font-size: 20px;
+}
+.iconBar .media {
+  color: var(--c-theme);
+}

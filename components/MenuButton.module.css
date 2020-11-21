@@ -27,5 +27,5 @@
   background-color: var(--c-theme);
   color: #fff;
   font-size: 11px;
-  border: 1px solid var(--c-black);
+  border: 1px solid var(--c-border-color);
 }

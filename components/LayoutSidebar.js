@@ -11,6 +11,9 @@ import TweetModal from "./TweetModal";
 
 function LayoutSidebar({ flat }) {
   const [showModal, setShowModal] = useState(false);
+  const onModalClose = () => {
+    setShowModal(false);
+  };
   return (
     <div className={cn(styles.sidebar)}>
       {/* flat navbardaki textleri silicek */}
@@ -21,7 +24,7 @@ function LayoutSidebar({ flat }) {
         </ThemeButton>
       </div>
       {/* tweetpop up */}
-      {showModal && <TweetModal onClick={() => setShowModal(false)} />}
+      {showModal && <TweetModal onModalClose={onModalClose} />}
 
       <div className={styles.profile}>
         <ProfilBox flat={flat} />

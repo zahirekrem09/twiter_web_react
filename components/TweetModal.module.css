@@ -20,11 +20,8 @@
 }
 
 .modal {
-  display: grid;
-  grid-template-areas: "avatar body";
-  grid-template-columns: 50px 1fr;
-  gap: 15px;
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
   border-bottom: 1px solid var(--c-border-color);
   background-color: var(--c-primary);
   border-radius: 20px;
@@ -35,14 +32,27 @@
   position: relative;
 }
 
-.avatar {
-  grid-area: avatar;
-  margin-top: 20px;
+.header {
+  padding: 5px;
+  /* background-color: aqua; */
+  border-bottom: 1px solid var(--c-theme-10);
+}
+.close {
+  color: var(--c-gray);
 }
 
 .body {
-  grid-area: body;
-  margin-top: 20px;
+  display: grid;
+  gap: 15px;
+  grid-template-areas: "avatar content";
+  grid-template-columns: 50px 1fr;
+  padding: 30px;
+}
+.avatar {
+  grid-area: avatar;
+}
+.content {
+  grid-area: content;
 }
 
 .textarea {
@@ -53,24 +63,24 @@
   font-size: 19px;
   width: 100%;
   display: block;
+  border-bottom: 1px solid var(--c-theme-10);
 }
 
 .footer {
-  /* margin-top: 120px; */
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .iconBar {
-  margin-left: -5px;
+  margin-left: -8px;
   display: flex;
   align-items: center;
 }
-
-.close {
-  color: var(--c-gray);
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.iconBar svg {
+  font-size: 20px;
+}
+.iconBar .media {
+  color: var(--c-theme);
 }

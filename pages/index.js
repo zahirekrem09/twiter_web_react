@@ -1,11 +1,21 @@
 import React from "react";
 
 import Layout from "../components/Layout";
+import HeaderMain from "../components/HeaderMain";
+import IconButton from "../components/IconButton";
+import { TimelineProp } from "../components/icons";
+
 import Tweet from "../components/Tweet";
+import Title from "../components/Title";
+import TweetEditor from "../components/TweetEditor";
 
 function HomePage() {
   return (
     <Layout>
+      <HeaderMain border>
+        <Title>Home</Title>
+      </HeaderMain>
+      <TweetEditor />
       <Tweet
         name="Ekrem Sarı"
         slug="ekrem12"

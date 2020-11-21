@@ -9,7 +9,7 @@ import { Close, Media, Gif, Question, Emoji } from "../components/icons";
 import ThemeButton from "./ThemeButton";
 import styles from "./TweetModal.module.css";
 
-const TweetModal = ({ onClick = () => {} }) => {
+const TweetModal = ({ onModalClose = () => {} }) => {
   const [toggleEmoji, setToggleEmoji] = useState(false);
   const [textTweet, setTextTweet] = useState("");
   const addEmoji = (e) => {
@@ -19,16 +19,26 @@ const TweetModal = ({ onClick = () => {} }) => {
     let emoji = String.fromCodePoint(...codesArray);
     setTextTweet(textTweet + emoji);
   };
+  const onSubmit = () => {
+    alert(textTweet);
+    onModalClose();
+  };
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <div className={styles.avatar}>
-          <Avatar />
+        <div className={styles.header}>
+          <IconButton className={styles.close} onClick={onModalClose}>
+            <Close />
+          </IconButton>
         </div>
+
         <div className={styles.body}>
+          <div className={styles.avatar}>
+            <Avatar />
+          </div>
           <div className={styles.content}>
             <TextareaAutosize
-              minRows={5}
+              minRows={6}
               className={styles.textarea}
               maxRows={20}
               placeholder="What's happening?"
@@ -36,49 +46,45 @@ const TweetModal = ({ onClick = () => {} }) => {
               onChange={(e) => setTextTweet(e.target.value)}
               value={textTweet}
             />
-          </div>
-          <div className={styles.footer}>
-            <div className={styles.iconBar}>
-              <IconButton className={styles.media}>
-                <Media />
-              </IconButton>
-              <IconButton className={styles.media}>
-                <Gif />
-              </IconButton>
-              <IconButton className={styles.media}>
-                <Question />
-              </IconButton>
-              <div style={{ position: "relative" }}>
-                <IconButton
-                  className={styles.media}
-                  onClick={() => setToggleEmoji(!toggleEmoji)}
-                >
-                  <Emoji />
+            <div className={styles.footer}>
+              <div className={styles.iconBar}>
+                <IconButton className={styles.media}>
+                  <Media />
                 </IconButton>
-                {toggleEmoji && (
-                  <Picker
-                    theme="auto"
-                    onSelect={addEmoji}
-                    style={{ position: "absolute", top: "50px", left: "30px" }}
-                  />
-                )}
+                <IconButton className={styles.media}>
+                  <Gif />
+                </IconButton>
+                <IconButton className={styles.media}>
+                  <Question />
+                </IconButton>
+                <div style={{ position: "relative" }}>
+                  <IconButton
+                    className={styles.media}
+                    onClick={() => setToggleEmoji(!toggleEmoji)}
+                  >
+                    <Emoji />
+                  </IconButton>
+                  {toggleEmoji && (
+                    <Picker
+                      theme="auto"
+                      onSelect={addEmoji}
+                      style={{
+                        position: "absolute",
+                        top: "50px",
+                        left: "30px",
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <ThemeButton className={styles.tweet} onClick={onSubmit}>
+                  Tweet
+                </ThemeButton>
               </div>
             </div>
-            <div>
-              <ThemeButton>Tweet</ThemeButton>
-            </div>
-
-            <IconButton className={styles.close} onClick={onClick}>
-              <Close />
-            </IconButton>
           </div>
-
-          {/* <textarea
-            className={styles.textarea}
-            name=""
-            rows="6"
-            placeholder="What's happening ?"
-          /> */}
         </div>
       </div>
     </div>

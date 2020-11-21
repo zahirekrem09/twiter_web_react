@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "../styles/app.css";
-
+import "emoji-mart/css/emoji-mart.css";
 import StoreContext from "../store";
 
 export default function MyApp({ Component, pageProps }) {
