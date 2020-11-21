@@ -1,6 +1,7 @@
 .main {
-  background-color: grey;
+  /* background-color: grey; */
   border-left: 1px;
+  border-right: 1px;
   border-style: solid;
   border-color: var(--c-border-color);
 }

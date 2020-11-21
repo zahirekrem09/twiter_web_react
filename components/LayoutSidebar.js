@@ -18,7 +18,6 @@ function LayoutSidebar({ flat }) {
       </div>
 
       <div className={styles.profile}>
-        {" "}
         <ProfilBox flat={flat} />
       </div>
     </div>

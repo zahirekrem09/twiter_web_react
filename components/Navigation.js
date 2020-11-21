@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import cn from "classnames";
 
 import { MENU } from "../constants/index";
 import styles from "./Navigation.module.css";
@@ -12,8 +13,6 @@ function Navigation({ flat = false }) {
 
   return (
     <nav className={styles.nav}>
-      <p>{JSON.stringify(flat)}</p>
-
       {MENU.map((menu, i) => {
         const showTitle = !flat && menu.title.length > 0;
         const selected = router.pathname === menu.path;
