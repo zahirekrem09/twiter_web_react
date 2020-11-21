@@ -24,11 +24,13 @@ function LayoutSidebar({ flat }) {
         </ThemeButton>
       </div>
       {/* tweetpop up */}
-      {showModal && <TweetModal onModalClose={onModalClose} />}
 
       <div className={styles.profile}>
         <ProfilBox flat={flat} />
       </div>
+      {showModal && (
+        <TweetModal showModal={showModal} onModalClose={onModalClose} />
+      )}
     </div>
   );
 }

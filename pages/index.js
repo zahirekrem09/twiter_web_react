@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Layout from "../components/Layout";
 import HeaderMain from "../components/HeaderMain";
@@ -7,8 +7,13 @@ import Title from "../components/Title";
 import TweetEditor from "../components/TweetEditor";
 
 import { data } from "../data";
+import TweetModal from "../components/TweetModal";
 
 function HomePage() {
+  const [showModal, setShowModal] = useState(true);
+  const onModalClose = () => {
+    setShowModal(false);
+  };
   return (
     <Layout>
       <HeaderMain border>
@@ -27,6 +32,10 @@ function HomePage() {
           tweetInfo={tweet.tweetInfo}
         ></Tweet>
       ))}
+
+      {/* {showModal && (
+        <TweetModal showModal={showModal} onModalClose={onModalClose} />
+      )} */}
 
       {/* <Tweet
         name="Ekrem Sarı"
