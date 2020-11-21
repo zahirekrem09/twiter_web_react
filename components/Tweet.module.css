@@ -1,0 +1,60 @@
+.tweet {
+  display: grid;
+  grid-template-areas: "avatar body";
+  grid-template-columns: 50px 1fr;
+  gap: 15px;
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--c-border-color);
+}
+.tweetAvatar {
+  grid-area: avatar;
+}
+
+.tweetBody {
+  grid-area: body;
+}
+.tweetHeader {
+  color: var(--c-gray);
+}
+
+.name {
+  color: var(--c-text-color);
+  font-weight: bold;
+}
+
+.slug {
+}
+
+.date {
+}
+
+.tweetContent {
+  white-space: pre-wrap;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.tweetFooter {
+  display: flex;
+  align-items: center;
+}
+
+.tweetFooterIcon {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  color: var(--c-gray);
+}
+.tweetFooterIcon:first-child {
+  margin-left: -8px;
+}
+.tweetFooterIcon span {
+  font-size: 0.9em;
+}
+.icon {
+  color: inherit;
+}
+
+.icon svg {
+  font-size: 19px;
+}

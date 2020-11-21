@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../styles/app.css";
 
@@ -7,7 +7,7 @@ import StoreContext from "../store";
 export default function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const theme = localStorage.getItem("THEME") || "light";
     setTheme(theme);
   }, []);
