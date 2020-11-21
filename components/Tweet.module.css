@@ -5,6 +5,7 @@
   gap: 15px;
   padding: 12px 15px;
   border-bottom: 1px solid var(--c-border-color);
+  position: relative;
 }
 .tweetAvatar {
   grid-area: avatar;
@@ -57,4 +58,14 @@
 
 .icon svg {
   font-size: 19px;
+}
+
+.more {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  font-size: 19px;
+}
+.more svg {
+  font-size: 17px;
 }

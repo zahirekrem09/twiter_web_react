@@ -38,7 +38,7 @@ const TweetEditor = ({}) => {
           type="text"
           onChange={(e) => setTextTweet(e.target.value)}
           onFocus={() => setShowFooter(true)}
-          onBlur={() => setShowFooter(false)}
+          // onBlur={() => setShowFooter(false)}
           value={textTweet}
         />
 

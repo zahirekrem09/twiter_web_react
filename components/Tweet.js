@@ -6,11 +6,11 @@ import cn from "classnames";
 import IconButton from "./IconButton";
 import * as Icon from "../components/icons";
 
-function Tweet({ photo, name, slug, text, children, datetime }) {
+function Tweet({ tweetInfo, photo, name, slug, text, children, datetime }) {
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>
-        <Avatar />
+        <Avatar src={photo} />
       </div>
       <div className={cn(styles.tweetBody)}>
         <header className={cn(styles.tweetHeader)}>
@@ -26,18 +26,19 @@ function Tweet({ photo, name, slug, text, children, datetime }) {
             <IconButton className={styles.icon}>
               <Icon.Reply />
             </IconButton>
+            {tweetInfo.reply && <span>{tweetInfo.reply}</span>}
           </div>
           <div className={cn(styles.tweetFooterIcon)}>
             <IconButton className={styles.icon}>
               <Icon.Retweet />
             </IconButton>
-            <span>12</span>
+            {tweetInfo.retweet && <span>{tweetInfo.retweet}</span>}
           </div>
           <div className={cn(styles.tweetFooterIcon)}>
             <IconButton className={styles.icon}>
               <Icon.Like />
             </IconButton>
-            <span>120</span>
+            {tweetInfo.like && <span>{tweetInfo.like}</span>}
           </div>
           <div className={cn(styles.tweetFooterIcon)}>
             <IconButton className={styles.icon}>
@@ -46,6 +47,9 @@ function Tweet({ photo, name, slug, text, children, datetime }) {
           </div>
         </footer>
       </div>
+      <IconButton className={styles.more}>
+        <Icon.More2 />
+      </IconButton>
     </article>
   );
 }
