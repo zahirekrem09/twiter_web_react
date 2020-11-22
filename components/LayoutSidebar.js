@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import StoreContext from "../store";
 import Navigation from "./Navigation";
 import ProfilBox from "./ProfileBox";
 import ThemeButton from "./ThemeButton";
@@ -10,16 +11,17 @@ import cn from "classnames";
 import TweetModal from "./TweetModal";
 
 function LayoutSidebar({ flat }) {
-  const [showModal, setShowModal] = useState(false);
-  const onModalClose = () => {
-    setShowModal(false);
-  };
+  const store = useContext(StoreContext);
+  // const [showModal, setShowModal] = useState(false);
+  // const onModalClose = () => {
+  //   setShowModal(false);
+  // };
   return (
     <div className={cn(styles.sidebar)}>
       {/* flat navbardaki textleri silicek */}
       <Navigation flat={flat} />
       <div className={styles.tweet}>
-        <ThemeButton xl full={!flat} onClick={() => setShowModal(true)}>
+        <ThemeButton xl full={!flat} onClick={() => store.onModalOpen()}>
           {flat ? <Tweet /> : "Tweet"}
         </ThemeButton>
       </div>
@@ -28,8 +30,11 @@ function LayoutSidebar({ flat }) {
       <div className={styles.profile}>
         <ProfilBox flat={flat} />
       </div>
-      {showModal && (
-        <TweetModal showModal={showModal} onModalClose={onModalClose} />
+      {store.showModal && (
+        <TweetModal
+          showModal={store.showModal}
+          onModalClose={store.onModalClose}
+        />
       )}
     </div>
   );

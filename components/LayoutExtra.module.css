@@ -1,3 +1,16 @@
 .extra {
   margin: 10px 15px;
 }
+
+.searchBox {
+  position: sticky;
+  top: 5px;
+  z-index: 999;
+  margin-top: 5.2px;
+  margin-bottom: 15px;
+}
+
+.extraStick {
+  position: sticky;
+  top: 5px;
+}

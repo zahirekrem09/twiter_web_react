@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: #253341;
+  background-color: var(--c-bg-primary);
   border-radius: 9999px;
-  border: 1px solid #15202b;
+  border: 1px solid var(--c-border-color);
 }
 
 .searchBar input {
@@ -19,6 +19,7 @@
 
 .icon svg {
   font-size: 18px;
+  color: var(--c-gray);
 }
 
 .searchBar:focus-within {

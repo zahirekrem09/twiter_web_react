@@ -5,7 +5,14 @@ import "emoji-mart/css/emoji-mart.css";
 import Avatar from "./Avatar";
 
 import IconButton from "./IconButton";
-import { Close, Media, Gif, Question, Emoji } from "../components/icons";
+import {
+  Close,
+  Media,
+  Gif,
+  Question,
+  Emoji,
+  SvgChart,
+} from "../components/icons";
 import ThemeButton from "./ThemeButton";
 import styles from "./TweetModal.module.css";
 
@@ -76,6 +83,9 @@ const TweetModal = ({ onModalClose = () => {} }) => {
                     />
                   )}
                 </div>
+                <IconButton className={styles.media}>
+                  <SvgChart />
+                </IconButton>
               </div>
 
               <div>

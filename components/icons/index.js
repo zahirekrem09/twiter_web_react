@@ -6,6 +6,7 @@ export { default as Emoji } from "./Emoji";
 export { default as Explore } from "./Explore";
 export { default as ExplorerFill } from "./ExplorerFill";
 export { default as Gif } from "./Gif";
+export { default as SvgChart } from "./Chart";
 export { default as HomeFill } from "./HomeFill";
 export { default as Home } from "./Home";
 export { default as Like } from "./Like";

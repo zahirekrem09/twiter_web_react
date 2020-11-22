@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import StoreContext from "../store";
 
 import Layout from "../components/Layout";
 import HeaderMain from "../components/HeaderMain";
@@ -10,10 +11,7 @@ import { data } from "../data";
 import TweetModal from "../components/TweetModal";
 
 function HomePage() {
-  const [showModal, setShowModal] = useState(true);
-  const onModalClose = () => {
-    setShowModal(false);
-  };
+  const store = useContext(StoreContext);
   return (
     <Layout>
       <HeaderMain border>
@@ -33,9 +31,12 @@ function HomePage() {
         ></Tweet>
       ))}
 
-      {/* {showModal && (
-        <TweetModal showModal={showModal} onModalClose={onModalClose} />
-      )} */}
+      {store.showModal && (
+        <TweetModal
+          showModal={store.showModal}
+          onModalClose={store.onModalClose}
+        />
+      )}
 
       {/* <Tweet
         name="Ekrem Sarı"

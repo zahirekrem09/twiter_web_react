@@ -3,10 +3,11 @@
   --c-black: #000;
   --c-theme: rgba(29, 161, 242, 1);
   --c-theme-10: rgba(29, 161, 242, 0.1);
-  --c-text-color: #000;
+  --c-text-color: #0f1419;
   --c-border-color: rgb(230, 236, 240);
   --c-gray: #6e767d;
   --c-dark-gray: #202327;
+  --c-bg-primary: #ebeef0;
   --fade: 120ms;
 }
 
@@ -16,6 +17,7 @@
   --c-border-color: #2f3336;
   --c-gray: #6e767d;
   --c-dark-gray: #202327;
+  --c-bg-primary: #253341;
 }
 
 .dark:root {
@@ -24,4 +26,5 @@
   --c-border-color: #2f3336;
   --c-gray: #6e767d;
   --c-dark-gray: #202327;
+  --c-bg-primary: #253341;
 }

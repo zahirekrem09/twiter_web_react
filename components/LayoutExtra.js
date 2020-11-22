@@ -7,7 +7,12 @@ function LayoutExtra({ children }) {
   return (
     <section className={cn(styles.extra)}>
       {/* searchbox */}
-      <SearchBox />
+
+      <div className={cn(styles.searchBox)}>
+        <SearchBox />
+      </div>
+
+      <div className={cn(styles.extraStick)}></div>
       {/* Trends for you   */}
       {/* Who to follow */}
       {/* footer */}

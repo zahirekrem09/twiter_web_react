@@ -6,6 +6,13 @@ import StoreContext from "../store";
 
 export default function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const onModalClose = () => {
+    setShowModal(false);
+  };
+  const onModalOpen = () => {
+    setShowModal(true);
+  };
 
   useEffect(() => {
     const theme = localStorage.getItem("THEME") || "light";
@@ -23,7 +30,9 @@ export default function MyApp({ Component, pageProps }) {
     document.querySelector("html").classList.add(theme?.toString());
   }, [theme]);
   return (
-    <StoreContext.Provider value={{ theme, changeTheme }}>
+    <StoreContext.Provider
+      value={{ theme, changeTheme, showModal, onModalClose, onModalOpen }}
+    >
       <Component {...pageProps} />
     </StoreContext.Provider>
   );
