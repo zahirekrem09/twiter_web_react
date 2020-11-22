@@ -59,7 +59,3 @@
 .followingbtn:hover:before {
   content: "Unfollow!" !important;
 }
-
-.unfollowbtn {
-  background-color: #ca2055;
-}

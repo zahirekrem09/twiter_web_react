@@ -1,0 +1,86 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* theme lihgt oldugunda modal arka planı duzelecek */
+.overlay:global(html.light) .overlay {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.overlay:global(html.light) {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--c-border-color);
+  background-color: var(--c-primary);
+  border-radius: 20px;
+  box-shadow: 0 10px 5px 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  width: 350px;
+  height: 230px;
+  position: relative;
+  z-index: 9999;
+}
+
+.header {
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  /* background-color: blue; */
+  width: 100%;
+  padding: 30px 30px;
+}
+.title {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+.textarea {
+  resize: none;
+  background-color: transparent;
+  outline: 0;
+  color: var(--c-text-color);
+  font-size: 16px;
+  width: 100%;
+  display: block;
+  text-align: center;
+
+  opacity: 0.3;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+.followbtn {
+  height: 30px;
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+}
+
+.followingbtn {
+  height: 30px;
+  transition: all 200ms;
+}

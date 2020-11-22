@@ -1,0 +1,44 @@
+.happening {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 20px;
+}
+.profilBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  width: 85px;
+  height: 85px;
+  border-radius: 5px;
+}
+
+.name {
+  color: var(--c-text-color);
+  font-weight: bold;
+  margin-left: 5px;
+  font-size: 13px;
+  white-space: nowrap;
+  line-height: calc(19.6875px);
+}
+.date {
+  font-weight: 400;
+  font-size: 13px;
+  color: #6e767d;
+}

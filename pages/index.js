@@ -9,11 +9,15 @@ import TweetEditor from "../components/TweetEditor";
 
 import { data } from "../data";
 import TweetModal from "../components/TweetModal";
+import { TimelineProp } from "../components/icons";
 
 function HomePage() {
   const store = useContext(StoreContext);
   return (
     <Layout>
+      <HeaderMain border icon={<TimelineProp />}>
+        <Title>Home</Title>
+      </HeaderMain>
       <TweetEditor />
       {data.map((tweet) => (
         <Tweet

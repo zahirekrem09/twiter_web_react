@@ -7,11 +7,16 @@ import StoreContext from "../store";
 export default function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [follow, setFollow] = useState(false);
   const onModalClose = () => {
     setShowModal(false);
   };
   const onModalOpen = () => {
     setShowModal(true);
+  };
+
+  const onFollow = () => {
+    setFollow(!follow);
   };
 
   useEffect(() => {
@@ -31,7 +36,15 @@ export default function MyApp({ Component, pageProps }) {
   }, [theme]);
   return (
     <StoreContext.Provider
-      value={{ theme, changeTheme, showModal, onModalClose, onModalOpen }}
+      value={{
+        theme,
+        changeTheme,
+        showModal,
+        onModalClose,
+        onModalOpen,
+        follow,
+        onFollow,
+      }}
     >
       <Component {...pageProps} />
     </StoreContext.Provider>

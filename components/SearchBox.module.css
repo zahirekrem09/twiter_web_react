@@ -24,9 +24,15 @@
 
 .searchBar:focus-within {
   background: transparent;
-  border: 1px solid var(--c-theme-10);
+  border: 1px solid var(--c-theme);
 }
 
 .searchBar::placeholder {
   color: var(--c-grey);
+}
+
+.large {
+  width: 100%;
+  height: 33px;
+  margin-right: 20px;
 }

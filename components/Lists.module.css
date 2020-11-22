@@ -3,7 +3,9 @@
   flex-direction: column;
   background-color: var(--c-bg-primary);
   border: 1px solid var(--c-border-color);
-  border-radius: 14px;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  /* border-radius: 14px; */
   margin-bottom: 20px;
   cursor: pointer;
 }
