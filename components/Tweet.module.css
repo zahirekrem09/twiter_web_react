@@ -68,4 +68,5 @@
 }
 .more svg {
   font-size: 17px;
+  color: var(--c-gray);
 }

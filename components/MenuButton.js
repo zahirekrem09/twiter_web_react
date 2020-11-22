@@ -3,10 +3,14 @@ import Button from "./Button";
 import styles from "./MenuButton.module.css";
 import cn from "classnames";
 
-function MenuButton({ href, notify, selected, children, ...props }) {
+function MenuButton({ href, notify, selected, children, className, ...props }) {
   return (
     <Button
-      className={cn(styles.navButton, selected && styles.navButtonSelected)}
+      className={cn(
+        styles.navButton,
+        selected && styles.navButtonSelected,
+        className
+      )}
       href={href}
       {...props}
     >

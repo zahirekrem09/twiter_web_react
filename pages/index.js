@@ -14,11 +14,7 @@ function HomePage() {
   const store = useContext(StoreContext);
   return (
     <Layout>
-      <HeaderMain border>
-        <Title>Home</Title>
-      </HeaderMain>
       <TweetEditor />
-
       {data.map((tweet) => (
         <Tweet
           key={tweet.id}

@@ -4,9 +4,6 @@
   align-items: flex-start;
 }
 
-.nav button + button {
-  margin-top: 8px;
-}
-.nav a + a {
-  margin-top: 8px;
+.MenuButton + .MenuButton {
+  margin-top: 12px;
 }

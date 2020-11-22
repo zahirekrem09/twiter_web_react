@@ -1,0 +1,17 @@
+.trends {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.tag {
+  font-size: 15px;
+  margin-left: 14px;
+}
+
+.more svg {
+  font-size: 19px;
+  color: var(--c-gray);
+}

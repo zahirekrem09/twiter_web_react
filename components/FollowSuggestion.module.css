@@ -1,0 +1,65 @@
+.content {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.profilBox {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.avatarbtn {
+  padding: 0;
+}
+
+.body {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.body * {
+  display: block;
+}
+.arrow {
+  margin-left: auto;
+}
+
+.avatarbtn:hover {
+  opacity: 0.2;
+  color: var(--c-text-color);
+}
+
+.slug {
+  color: var(--c-gray);
+}
+
+.followbtn {
+  height: 30px;
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+}
+
+.followingbtn {
+  height: 30px;
+  transition: all 200ms;
+}
+
+.followingbtn:hover {
+  background-color: #ca2055 !important;
+}
+
+.followingbtn:hover span {
+  display: none;
+}
+
+.followingbtn:hover:before {
+  content: "Unfollow!" !important;
+}
+
+.unfollowbtn {
+  background-color: #ca2055;
+}

@@ -6,10 +6,16 @@ function Avatar({
   src = "https://avatars3.githubusercontent.com/u/63649974?s=460&u=2383105e4cd97181c5bc88eaf82909bbda6929b3&v=4",
   alt = "Ekrem",
   size = 47,
+  className,
   children,
+  ...props
 }) {
   return (
-    <div className={cn(styles.avatar)} style={{ width: size, height: size }}>
+    <div
+      className={cn(styles.avatar)}
+      style={{ width: size, height: size }}
+      {...props}
+    >
       <img src={src} alt={alt} />
     </div>
   );

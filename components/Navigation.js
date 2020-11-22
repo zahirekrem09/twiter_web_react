@@ -22,6 +22,7 @@ function Navigation({ flat = false }) {
             notify={menu.notify}
             selected={selected}
             href={menu.path}
+            className={styles.MenuButton}
           >
             {selected ? menu.iconSelected : menu.icon}
             {showTitle && <Title>{menu.title}</Title>}

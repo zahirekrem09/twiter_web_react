@@ -1,0 +1,59 @@
+.lists {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--c-bg-primary);
+  border: 1px solid var(--c-border-color);
+  border-radius: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.body > *:hover {
+  background-color: var(--hover-bg);
+}
+.body > * + div {
+  border-top: 1px solid var(--c-border-color);
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--c-border-color);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.single {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.title {
+  margin-left: 14px;
+}
+
+/* .list .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 19px; #F7F9FA
+} */
+.icon {
+  color: var(--c-theme);
+  font-size: 19px;
+}
+
+.more {
+  padding: 16px;
+  cursor: pointer;
+  border-top: 1px solid var(--c-border-color);
+}
+.more a {
+  color: #1da1f2;
+  text-decoration: none;
+  font-size: 15px;
+}
+.more:hover {
+  background-color: var(--hover-bg);
+  transition: all 0.2s ease-out;
+  outline-style: none;
+}

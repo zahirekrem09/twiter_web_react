@@ -3,7 +3,7 @@ import Button from "./Button";
 import styles from "./ThemeButton.module.css";
 import cn from "classnames";
 
-function ThemeButton({ className, children, ...props }) {
+function ThemeButton({ OnClick, className, children, ...props }) {
   return (
     <Button className={cn(styles.themeButton, className)} {...props}>
       {children}

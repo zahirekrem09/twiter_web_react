@@ -7,7 +7,8 @@
   --c-border-color: rgb(230, 236, 240);
   --c-gray: #6e767d;
   --c-dark-gray: #202327;
-  --c-bg-primary: #ebeef0;
+  --c-bg-primary: #f7f9fa;
+  --hover-bg: rgba(0, 0, 0, 0.03);
   --fade: 120ms;
 }
 

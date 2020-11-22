@@ -1,5 +1,6 @@
 .avatar {
   flex-shrink: 0;
+  align-items: center;
 }
 
 .avatar img {
@@ -7,4 +8,5 @@
   display: block;
   border-radius: 99px;
   border: 2px solid var(--c-border-color);
+  text-align: center;
 }
