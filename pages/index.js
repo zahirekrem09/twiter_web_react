@@ -1,21 +1,20 @@
-import React, { useState, useContext } from "react";
-import StoreContext from "../store";
+import React from "react";
 
 import Layout from "../components/Layout";
 import HeaderMain from "../components/HeaderMain";
 import Tweet from "../components/Tweet";
 import Title from "../components/Title";
 import TweetEditor from "../components/TweetEditor";
+import styles from "./style.module.css";
 
 import { data } from "../data";
-import TweetModal from "../components/TweetModal";
+
 import { TimelineProp } from "../components/icons";
 
 function HomePage() {
-  const store = useContext(StoreContext);
   return (
     <Layout>
-      <HeaderMain border icon={<TimelineProp />}>
+      <HeaderMain className={styles.header} border icon={<TimelineProp />}>
         <Title>Home</Title>
       </HeaderMain>
       <TweetEditor />
@@ -30,13 +29,6 @@ function HomePage() {
           tweetInfo={tweet.tweetInfo}
         ></Tweet>
       ))}
-
-      {store.showModal && (
-        <TweetModal
-          showModal={store.showModal}
-          onModalClose={store.onModalClose}
-        />
-      )}
 
       {/* <Tweet
         name="Ekrem Sarı"

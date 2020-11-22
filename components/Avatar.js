@@ -3,7 +3,7 @@ import styles from "./Avatar.module.css";
 import cn from "classnames";
 
 function Avatar({
-  src = "https://avatars3.githubusercontent.com/u/63649974?s=460&u=2383105e4cd97181c5bc88eaf82909bbda6929b3&v=4",
+  src = "https://pbs.twimg.com/profile_images/1180781660247379968/BVoqMOft_400x400.jpg",
   alt = "Ekrem",
   size = 47,
   className,
@@ -12,7 +12,7 @@ function Avatar({
 }) {
   return (
     <div
-      className={cn(styles.avatar)}
+      className={cn(styles.avatar, className)}
       style={{ width: size, height: size }}
       {...props}
     >

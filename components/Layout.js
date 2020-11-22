@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import StoreContext from "../store";
 import cn from "classnames";
 import useWindowSize from "../hooks/useWindowSize";
 import CONST from "../constants";
@@ -7,9 +8,11 @@ import LayoutSidebar from "../components/LayoutSidebar";
 import LayoutMain from "../components/LayoutMain";
 import LayoutExtra from "../components/LayoutExtra";
 import MobileSidebar from "./MobileSidebar";
+import TweetModal from "./TweetModal";
 
 function Layout({ children }) {
   const size = useWindowSize();
+  const store = useContext(StoreContext);
   return (
     <div className={cn(styles.layout)}>
       {size.width <= 500 && <MobileSidebar />}
@@ -21,6 +24,13 @@ function Layout({ children }) {
       </LayoutSidebar> */}
 
       <LayoutMain>{children}</LayoutMain>
+
+      {store.showModal && (
+        <TweetModal
+          showModal={store.showModal}
+          onModalClose={store.onModalClose}
+        />
+      )}
 
       {size.width > CONST.TABLET_SIZE && <LayoutExtra>extra menü</LayoutExtra>}
     </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./Button.module.css";
 import cn from "classnames";
 
-function LinkButton({ href, children, ...props }) {
+function LinkButton({ href, children, selected, ...props }) {
   return (
     <Link href={href}>
       <a {...props}>{children}</a>

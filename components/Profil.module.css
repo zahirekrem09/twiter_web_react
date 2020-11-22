@@ -1,0 +1,70 @@
+/* box-shadow: rgba(0, 0, 0, 0.02) 0px 0px 2px inset; */
+
+.backdropimg {
+  width: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 20px;
+  justify-content: center;
+  position: relative;
+}
+.avatar {
+  margin-top: -70px;
+  margin-left: 15px;
+}
+
+.name {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.slug {
+  color: var(--c-gray);
+  align-items: center;
+}
+.bio {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.caption {
+  /* align-items: center; */
+  margin-top: 15px;
+}
+.follow {
+  margin-right: 15px;
+}
+.count {
+  display: inline;
+  margin-right: 5px;
+}
+.footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--c-border-color);
+}
+
+.themeButton {
+  flex: 1;
+  border-radius: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.followbtn {
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+
+  width: 100%;
+  max-width: 100px;
+  position: absolute;
+  top: -60px;
+  right: 20px;
+  z-index: 9999;
+}

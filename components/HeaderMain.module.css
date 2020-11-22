@@ -8,6 +8,8 @@
   padding-right: 15px;
   position: sticky;
   top: 0;
+  z-index: 999;
+  background-color: inherit;
 }
 
 .theme {
