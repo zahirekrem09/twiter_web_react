@@ -6,14 +6,19 @@ import styles from "./Layout.module.css";
 import LayoutSidebar from "../components/LayoutSidebar";
 import LayoutMain from "../components/LayoutMain";
 import LayoutExtra from "../components/LayoutExtra";
+import MobileSidebar from "./MobileSidebar";
 
 function Layout({ children }) {
   const size = useWindowSize();
   return (
     <div className={cn(styles.layout)}>
-      <LayoutSidebar flat={size.width < CONST.DESKTOP_SIZE}>
+      {size.width <= 500 && <MobileSidebar />}
+      {size.width > 500 && (
+        <LayoutSidebar flat={size.width < CONST.DESKTOP_SIZE} />
+      )}
+      {/* <LayoutSidebar flat={size.width < CONST.DESKTOP_SIZE}>
         sidebar
-      </LayoutSidebar>
+      </LayoutSidebar> */}
 
       <LayoutMain>{children}</LayoutMain>
 
