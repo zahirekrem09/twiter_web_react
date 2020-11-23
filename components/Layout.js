@@ -23,7 +23,7 @@ function Layout({ children }) {
         sidebar
       </LayoutSidebar> */}
 
-      <LayoutMain>{children}</LayoutMain>
+      <LayoutMain className={cn(styles.main)}>{children}</LayoutMain>
 
       {store.showModal && (
         <TweetModal

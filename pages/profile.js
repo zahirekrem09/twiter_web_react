@@ -7,7 +7,6 @@ function ProfilePage() {
   return (
     <Layout>
       <Profil />
-      <ProfiCard />
     </Layout>
   );
 }

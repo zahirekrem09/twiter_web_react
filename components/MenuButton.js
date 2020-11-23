@@ -3,7 +3,15 @@ import Button from "./Button";
 import styles from "./MenuButton.module.css";
 import cn from "classnames";
 
-function MenuButton({ href, notify, selected, children, className, ...props }) {
+function MenuButton({
+  href,
+  notify,
+  selected,
+  children,
+  className,
+  onClik,
+  ...props
+}) {
   return (
     <Button
       className={cn(

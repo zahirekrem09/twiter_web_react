@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import cn from "classnames";
 
@@ -7,8 +7,14 @@ import styles from "./Navigation.module.css";
 
 import MenuButton from "./MenuButton";
 import Title from "./Title";
+import MoreModal from "./MoreModal";
 
 function Navigation({ flat = false }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const onModalClose = () => {
+    setShowModal(!setShowModal);
+  };
   const router = useRouter();
 
   return (
@@ -22,13 +28,17 @@ function Navigation({ flat = false }) {
             notify={menu.notify}
             selected={selected}
             href={menu.path}
+            // href={menu.title !== "More" ? menu.path : null}
             className={styles.MenuButton}
+            // onClick={menu.title === "More" ? () => setShowModal(true) : null}
           >
             {selected ? menu.iconSelected : menu.icon}
             {showTitle && <Title>{menu.title}</Title>}
           </MenuButton>
         );
       })}
+
+      {/* {showModal && <MoreModal />} */}
     </nav>
   );
 }

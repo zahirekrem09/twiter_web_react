@@ -37,6 +37,7 @@ function LayoutExtra({ children }) {
         <FollowSuggestion />
         <FollowSuggestion />
       </Lists>
+
       {/* footer */}
     </section>
   );

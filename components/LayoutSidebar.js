@@ -18,6 +18,8 @@ function LayoutSidebar({ flat }) {
     <div className={cn(styles.sidebar)}>
       {/* flat navbardaki textleri silicek */}
       <Navigation flat={flat} />
+
+      {}
       <div className={cn(styles.tweet, size < 510 && styles.stickybutton)}>
         <ThemeButton
           xl
