@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { formatDistanceToNowStrict } from "date-fns";
 import Avatar from "./Avatar";
 import styles from "./Tweet.module.css";
@@ -6,6 +6,7 @@ import cn from "classnames";
 import IconButton from "./IconButton";
 import * as Icon from "../components/icons";
 import { urlObjectKeys } from "next/dist/next-server/lib/utils";
+import ProfiCard from "./ProfilCard";
 
 function Tweet({
   tweetInfo,
@@ -17,12 +18,26 @@ function Tweet({
   children,
   datetime,
 }) {
+  const [showModal, setShowModal] = useState(false);
+  const onModalClose = () => {
+    setTimeout(() => {
+      setShowModal(true);
+    }, 1000);
+  };
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>
-        <Avatar src={avatar} />
+        <span
+          onMouseEnter={() => onModalClose()}
+          // onMouseLeave={() => setShowModal(false)}
+        >
+          <Avatar src={avatar} className={cn(styles.avatar)} />
+        </span>
       </div>
-      <div className={cn(styles.tweetBody)}>
+      <div
+        className={cn(styles.tweetBody)}
+        onMouseEnter={() => setShowModal(false)}
+      >
         <header className={cn(styles.tweetHeader)}>
           <span className={styles.name}>{name} </span>
           <span className={styles.slug}>@{slug} - </span>
@@ -73,6 +88,7 @@ function Tweet({
       <IconButton className={styles.more}>
         <Icon.More2 />
       </IconButton>
+      {showModal && <ProfiCard />}
     </article>
   );
 }

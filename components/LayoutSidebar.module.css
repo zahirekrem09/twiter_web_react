@@ -31,3 +31,9 @@
 .tweet svg {
   font-size: 19px;
 }
+
+.stickybutton {
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+}

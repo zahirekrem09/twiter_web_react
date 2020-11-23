@@ -1,9 +1,22 @@
 /* box-shadow: rgba(0, 0, 0, 0.02) 0px 0px 2px inset; */
-
-.backdropimg {
-  width: 100%;
+.profile {
+  background-color: var(--c-primary);
+  max-width: 250px;
+  margin: 30px;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid var(--c-border-color);
+  position: absolute;
+  top: 40px;
+  left: -120px;
+  z-index: 9999;
+  box-shadow: 0 10px 5px 5px rgba(0, 0, 0, 0.2);
 }
-
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .body {
   display: flex;
   flex-direction: column;
@@ -13,7 +26,6 @@
   position: relative;
 }
 .avatar {
-  margin-top: -70px;
   margin-left: 15px;
 }
 
@@ -55,19 +67,19 @@
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.themeButton:active {
-  border-bottom: 5px solid var(--c-theme);
+
+.followingbtn {
+  transition: all 200ms;
 }
 
-.followbtn {
-  background-color: transparent;
-  color: var(--c-theme);
-  border: 1px solid var(--c-theme);
+.followingbtn:hover {
+  background-color: #ca2055 !important;
+}
 
-  width: 100%;
-  max-width: 100px;
-  position: absolute;
-  top: -60px;
-  right: 20px;
-  z-index: 9999;
+.followingbtn:hover span {
+  display: none;
+}
+
+.followingbtn:hover:before {
+  content: "Unfollow!" !important;
 }

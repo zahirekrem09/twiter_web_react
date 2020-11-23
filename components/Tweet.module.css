@@ -10,6 +10,9 @@
 .tweetAvatar {
   grid-area: avatar;
 }
+.avatar {
+  cursor: pointer;
+}
 
 .tweetBody {
   grid-area: body;
