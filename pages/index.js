@@ -5,7 +5,6 @@ import HeaderMain from "../components/HeaderMain";
 import Tweet from "../components/Tweet";
 import Title from "../components/Title";
 import TweetEditor from "../components/TweetEditor";
-import styles from "./style.module.css";
 
 import { data } from "../data";
 
@@ -14,7 +13,7 @@ import { TimelineProp } from "../components/icons";
 function HomePage() {
   return (
     <Layout>
-      <HeaderMain className={styles.header} border icon={<TimelineProp />}>
+      <HeaderMain border icon={<TimelineProp />}>
         <Title>Home</Title>
       </HeaderMain>
       <TweetEditor />
