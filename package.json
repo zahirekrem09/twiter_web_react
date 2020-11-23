@@ -20,6 +20,7 @@
     "css-loader": "^5.0.1",
     "date-fns": "^2.16.1",
     "emoji-mart": "^3.0.0",
+    "firebase": "^8.1.1",
     "next": "^10.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

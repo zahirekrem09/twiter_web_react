@@ -31,6 +31,21 @@ const TweetEditor = ({}) => {
   const onSubmit = () => {
     alert(textTweet);
   };
+
+  // Create a reference to the hidden file input element
+  // const hiddenFileInput = React.useRef(null);
+
+  // // Programatically click the hidden file input element
+  // // when the Button component is clicked
+  // const handleClick = (event) => {
+  //   hiddenFileInput.current.click();
+  // };
+  // // Call a function (passed as a prop from the parent component)
+  // // to handle the user-selected file
+  // const handleChange = (event) => {
+  //   const fileUploaded = event.target.files[0];
+  //   props.handleFile(fileUploaded);
+  // };
   return (
     <div className={styles.body}>
       <div className={styles.avatar}>
@@ -52,12 +67,32 @@ const TweetEditor = ({}) => {
         {showFooter && (
           <div className={styles.footer}>
             <div className={styles.iconBar}>
-              <IconButton className={styles.media}>
-                <Media />
-              </IconButton>
-              <IconButton className={styles.media}>
-                <Gif />
-              </IconButton>
+              <label htmlFor="file-input" style={{ cursor: "pointer" }}>
+                <IconButton
+                  className={styles.media}
+                  style={{ pointerEvents: "none" }}
+                >
+                  <Media />
+                </IconButton>
+              </label>
+
+              <input
+                id="file-input"
+                accept="image/*"
+                type="file"
+                // ref={hiddenFileInput}
+                // onChange={handleChange}
+                style={{ display: "none" }}
+              />
+              <label htmlFor="file-input" style={{ cursor: "pointer" }}>
+                <IconButton
+                  className={styles.media}
+                  style={{ pointerEvents: "none" }}
+                >
+                  <Gif />
+                </IconButton>
+              </label>
+
               <IconButton className={styles.media}>
                 <Question />
               </IconButton>

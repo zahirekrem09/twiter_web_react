@@ -24,6 +24,7 @@ function Tweet({
       setShowModal(true);
     }, 1000);
   };
+  // console.log(tweetInfo);
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>
@@ -42,7 +43,8 @@ function Tweet({
           <span className={styles.name}>{name} </span>
           <span className={styles.slug}>@{slug} - </span>
           <span className={styles.date}>
-            {formatDistanceToNowStrict(datetime)}
+            {/* {formatDistanceToNowStrict(datetime)} */}
+            {datetime}
           </span>
         </header>
         <div className={cn(styles.tweetContent)}>{text}</div>

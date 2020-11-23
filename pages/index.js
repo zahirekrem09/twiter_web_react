@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Layout from "../components/Layout";
 import HeaderMain from "../components/HeaderMain";
@@ -8,25 +8,36 @@ import TweetEditor from "../components/TweetEditor";
 
 import { data } from "../data";
 
+import db from "../firebase/firebase";
+
 import { TimelineProp } from "../components/icons";
 
 function HomePage() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    // firebase db  connect
+    db.collection("posts").onSnapshot((snapshot) => {
+      const postsData = snapshot.docs.map((doc) => doc.data());
+      setPosts(postsData);
+    });
+  }, []);
   return (
     <Layout>
       <HeaderMain border icon={<TimelineProp />}>
         <Title>Home</Title>
       </HeaderMain>
       <TweetEditor />
-      {data.map((tweet) => (
+      {posts?.map((post, i) => (
         <Tweet
-          key={tweet.id}
-          name={tweet.name}
-          slug={tweet.slug}
-          datetime={tweet.datetime}
-          text={tweet.text}
-          avatar={tweet.avatar_img}
-          photo={tweet.tweet_img}
-          tweetInfo={tweet.tweetInfo}
+          key={i}
+          name={post.name}
+          slug={post.slug}
+          // datetime={post.datetime}
+          text={post.text}
+          avatar={post.avatar_img}
+          photo={post.tweet_img}
+          tweetInfo={post.tweetInfo}
         ></Tweet>
       ))}
 
