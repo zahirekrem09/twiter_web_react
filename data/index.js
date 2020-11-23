@@ -3,7 +3,7 @@ export const data = [
     id: 1,
     name: "Kronos",
     slug: "KronosHaber",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/826041320192012288/dtLfHPMc_400x400.jpg",
 
     datetime: new Date("2020-11-20"),
@@ -12,6 +12,7 @@ export const data = [
 2 dakikada son 24 saatin gündemi
 
 YouTube: https://youtu.be/wHkBQOBOLGo`,
+    tweet_img: null,
     tweetInfo: {
       reply: 12,
       retweet: 120,
@@ -22,11 +23,13 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 2,
     name: "Sputnik Türkiye",
     slug: "sputnik_TR",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/1260474447569522689/OsofSYHF_400x400.png",
 
     datetime: new Date("2020-11-19"),
     text: `Mansur Yavaş: Uzaktan eğitime devam kararı sonrası 45 günde 928 köyümüze ücretsiz interneti ulaştırmış olacağız`,
+    tweet_img:
+      "https://pbs.twimg.com/media/Enf9ZmFXcAAJeaX?format=jpg&name=small",
     tweetInfo: {
       reply: 2,
       retweet: 12,
@@ -37,11 +40,12 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 3,
     name: "Notkon",
     slug: "notkoncom",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/980903106459430917/noykiR8B_400x400.jpg",
 
     datetime: new Date("2020-11-21"),
     text: `Sonar araştırma şirketinin sahibi Hakan Bayrakçı, CHP'li Ahmet Ünal Çeviköz'ün ABD Başkanı seçilen Joe Biden'a gönderdiği mesajda "Beklentimiz Türk demokrasisi vurgusu yapması" sözlerine sert tepki gösterdi. Bayrakçı, CHP'ye "Satılmış sizsiniz ulan." diyerek sert çıktı.`,
+    tweet_img: null,
     tweetInfo: {
       reply: null,
       retweet: null,
@@ -52,7 +56,7 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 4,
     name: "Krampon Sports",
     slug: "KramponSport",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/1213059288006037504/peJF2iNc_400x400.jpg",
 
     datetime: new Date(),
@@ -66,6 +70,8 @@ Video oyunu 1 Kişiye Football Manager 2021 hediye!
 2️⃣ Bu tweeti Retweetleyin.
 
 NOT: FM serilerindeki favori oyuncunuzu alta yazmayı unutmayın Gülümseyen gözlerle gülümseyen yüz`,
+    tweet_img: null,
+
     tweetInfo: {
       reply: 12,
       retweet: 120,
@@ -76,7 +82,7 @@ NOT: FM serilerindeki favori oyuncunuzu alta yazmayı unutmayın Gülümseyen g�
     id: 5,
     name: "Kronos",
     slug: "KronosHaber",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/826041320192012288/dtLfHPMc_400x400.jpg",
 
     datetime: new Date(),
@@ -85,6 +91,8 @@ NOT: FM serilerindeki favori oyuncunuzu alta yazmayı unutmayın Gülümseyen g�
 2 dakikada son 24 saatin gündemi
 
 YouTube: https://youtu.be/wHkBQOBOLGo`,
+    tweet_img:
+      "https://pbs.twimg.com/media/EndQmlIXEAUWgVv?format=jpg&name=360x360",
     tweetInfo: {
       reply: 12,
       retweet: 120,
@@ -95,11 +103,13 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 6,
     name: "Sputnik Türkiye",
     slug: "sputnik_TR",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/1260474447569522689/OsofSYHF_400x400.png",
 
     datetime: new Date(),
     text: `Mansur Yavaş: Uzaktan eğitime devam kararı sonrası 45 günde 928 köyümüze ücretsiz interneti ulaştırmış olacağız`,
+    tweet_img:
+      "https://pbs.twimg.com/media/EnfWIoiW4AUz2Ww?format=png&name=small",
     tweetInfo: {
       reply: 2,
       retweet: 12,
@@ -110,7 +120,7 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 7,
     name: "Notkon",
     slug: "notkoncom",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/980903106459430917/noykiR8B_400x400.jpg",
 
     datetime: new Date(),
@@ -125,7 +135,7 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 8,
     name: "Krampon Sports",
     slug: "KramponSport",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/1213059288006037504/peJF2iNc_400x400.jpg",
 
     datetime: new Date(),
@@ -139,6 +149,7 @@ Video oyunu 1 Kişiye Football Manager 2021 hediye!
 2️⃣ Bu tweeti Retweetleyin.
 
 NOT: FM serilerindeki favori oyuncunuzu alta yazmayı unutmayın Gülümseyen gözlerle gülümseyen yüz`,
+    tweet_img: null,
     tweetInfo: {
       reply: 12,
       retweet: 120,
@@ -149,7 +160,7 @@ NOT: FM serilerindeki favori oyuncunuzu alta yazmayı unutmayın Gülümseyen g�
     id: 9,
     name: "Kronos",
     slug: "KronosHaber",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/826041320192012288/dtLfHPMc_400x400.jpg",
 
     datetime: new Date(),
@@ -158,6 +169,8 @@ NOT: FM serilerindeki favori oyuncunuzu alta yazmayı unutmayın Gülümseyen g�
 2 dakikada son 24 saatin gündemi
 
 YouTube: https://youtu.be/wHkBQOBOLGo`,
+    tweet_img:
+      "https://pbs.twimg.com/media/EnfWIoiW4AUz2Ww?format=png&name=small",
     tweetInfo: {
       reply: 12,
       retweet: 120,
@@ -168,11 +181,13 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 10,
     name: "Sputnik Türkiye",
     slug: "sputnik_TR",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/1260474447569522689/OsofSYHF_400x400.png",
 
     datetime: new Date(),
     text: `Mansur Yavaş: Uzaktan eğitime devam kararı sonrası 45 günde 928 köyümüze ücretsiz interneti ulaştırmış olacağız`,
+    tweet_img:
+      "https://pbs.twimg.com/media/EnfWIoiW4AUz2Ww?format=png&name=small",
     tweetInfo: {
       reply: 2,
       retweet: 12,
@@ -183,11 +198,13 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 11,
     name: "Notkon",
     slug: "notkoncom",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/980903106459430917/noykiR8B_400x400.jpg",
 
     datetime: new Date(),
     text: `Sonar araştırma şirketinin sahibi Hakan Bayrakçı, CHP'li Ahmet Ünal Çeviköz'ün ABD Başkanı seçilen Joe Biden'a gönderdiği mesajda "Beklentimiz Türk demokrasisi vurgusu yapması" sözlerine sert tepki gösterdi. Bayrakçı, CHP'ye "Satılmış sizsiniz ulan." diyerek sert çıktı.`,
+    tweet_img:
+      "https://pbs.twimg.com/media/EnfWIoiW4AUz2Ww?format=png&name=small",
     tweetInfo: {
       reply: null,
       retweet: null,
@@ -198,7 +215,7 @@ YouTube: https://youtu.be/wHkBQOBOLGo`,
     id: 12,
     name: "Krampon Sports",
     slug: "KramponSport",
-    photo:
+    avatar_img:
       "https://pbs.twimg.com/profile_images/1213059288006037504/peJF2iNc_400x400.jpg",
 
     datetime: new Date(),
@@ -212,6 +229,8 @@ Video oyunu 1 Kişiye Football Manager 2021 hediye!
 2️⃣ Bu tweeti Retweetleyin.
 
 NOT: FM serilerindeki favori oyuncunuzu alta yazmayı unutmayın Gülümseyen gözlerle gülümseyen yüz`,
+    tweet_img:
+      "https://pbs.twimg.com/media/EnfWIoiW4AUz2Ww?format=png&name=small",
     tweetInfo: {
       reply: 12,
       retweet: 120,

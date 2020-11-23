@@ -9,6 +9,7 @@ import FollowSuggestion from "./FollowSuggestion";
 
 function LayoutExtra({ children }) {
   const router = useRouter();
+  console.log(router.pathname);
   return (
     <section className={cn(styles.extra)}>
       {/* searchbox */}
@@ -19,7 +20,8 @@ function LayoutExtra({ children }) {
 
       <div className={cn(styles.extraStick)}></div>
       {/* Trends for you   */}
-      {!router.pathname === "explore" && (
+
+      {router.pathname !== "/explore" && (
         <Lists title="Trends for you" icon>
           <Trends tag="Τραμπ" />
           <Trends tag="Black Friday" />

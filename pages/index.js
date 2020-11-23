@@ -25,7 +25,8 @@ function HomePage() {
           slug={tweet.slug}
           datetime={tweet.datetime}
           text={tweet.text}
-          photo={tweet.photo}
+          avatar={tweet.avatar_img}
+          photo={tweet.tweet_img}
           tweetInfo={tweet.tweetInfo}
         ></Tweet>
       ))}

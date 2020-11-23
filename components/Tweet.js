@@ -5,12 +5,22 @@ import styles from "./Tweet.module.css";
 import cn from "classnames";
 import IconButton from "./IconButton";
 import * as Icon from "../components/icons";
+import { urlObjectKeys } from "next/dist/next-server/lib/utils";
 
-function Tweet({ tweetInfo, photo, name, slug, text, children, datetime }) {
+function Tweet({
+  tweetInfo,
+  avatar,
+  photo,
+  name,
+  slug,
+  text,
+  children,
+  datetime,
+}) {
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>
-        <Avatar src={photo} />
+        <Avatar src={avatar} />
       </div>
       <div className={cn(styles.tweetBody)}>
         <header className={cn(styles.tweetHeader)}>
@@ -21,6 +31,19 @@ function Tweet({ tweetInfo, photo, name, slug, text, children, datetime }) {
           </span>
         </header>
         <div className={cn(styles.tweetContent)}>{text}</div>
+        {photo && (
+          <div
+          // className={cn(styles.tweetImage)}
+          // style={{ backgroundImage: `url(${photo})` }}
+          >
+            <img
+              src={photo}
+              alt="tweetimage"
+              className={cn(styles.tweetImage)}
+            />
+          </div>
+        )}
+
         <footer className={cn(styles.tweetFooter)}>
           <div className={cn(styles.tweetFooterIcon)}>
             <IconButton className={styles.icon}>
