@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCTLoLiJYX-HT65RZkJcNbNAINxTR0cRMQ",
@@ -15,5 +16,7 @@ const appTwitter = !firebase.apps.length
   : firebase.app();
 
 const db = appTwitter.firestore();
+const auth = appTwitter.auth();
+const storage = appTwitter.storage();
 
-export default db;
+export { db, auth, storage };

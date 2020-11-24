@@ -43,8 +43,7 @@ function Tweet({
           <span className={styles.name}>{name} </span>
           <span className={styles.slug}>@{slug} - </span>
           <span className={styles.date}>
-            {/* {formatDistanceToNowStrict(datetime)} */}
-            {datetime}
+            {formatDistanceToNowStrict(datetime)}
           </span>
         </header>
         <div className={cn(styles.tweetContent)}>{text}</div>

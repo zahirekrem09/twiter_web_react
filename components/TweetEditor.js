@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { db, storage } from "../firebase/firebase";
+import firebase from "firebase";
+import { v4 as uuid } from "uuid";
 import TextareaAutosize from "react-textarea-autosize";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
@@ -19,7 +22,69 @@ import styles from "./TweetEditor.module.css";
 const TweetEditor = ({}) => {
   const [toggleEmoji, setToggleEmoji] = useState(false);
   const [textTweet, setTextTweet] = useState("");
+  const [image, setImage] = useState(null);
   const [showFooter, setShowFooter] = useState(false);
+
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  const handleUpload = async () => {
+    const id = uuid();
+
+    const storageRef = storage.ref(`images/${id}`);
+    // const imageRef = firebase
+    //   .database()
+    //   .ref("posts")
+    //   .child("tweet_img")
+    //   .child(id);
+    await storageRef.put(image);
+
+    storageRef.getDownloadURL().then((url) => {
+      db.collection("posts").add({
+        datetime: firebase.firestore.FieldValue.serverTimestamp(),
+        avatar_img:
+          "https://pbs.twimg.com/profile_images/1180781660247379968/BVoqMOft_400x400.jpg",
+        textTweet: textTweet,
+        tweet_img: url,
+        name: "ekrem",
+        slug: "ekrem12",
+        tweetInfo: { like: null, reply: null, retweet: null },
+      });
+    });
+    setImage(null);
+    setTextTweet("");
+
+    // uploadTask.on(
+    //   "state_changed",
+    //   (err) => {
+    //     console.error(err);
+    //     alert(err.message);
+    //   },
+    //   () => {
+    //     storage
+    //       .ref("images")
+    //       .child(image.name)
+    //       .getDownloadURL()
+    //       .then((url) => {
+    //         db.collection("posts").add({
+    //           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    //           textTweet: textTweet,
+    //           tweet_img: url,
+    //           name: "ekrem",
+    //           slug: "ekrem12",
+    //           avatar_img:
+    //             "https://pbs.twimg.com/profile_images/1001759983363641344/pJANPf_h_400x400.jpg",
+    //         });
+
+    //         setImage(null);
+    //         setTextTweet("");
+    //       });
+    //   }
+    // );
+  };
 
   const addEmoji = (e) => {
     let sym = e.unified.split("-");
@@ -81,7 +146,7 @@ const TweetEditor = ({}) => {
                 accept="image/*"
                 type="file"
                 // ref={hiddenFileInput}
-                // onChange={handleChange}
+                onChange={handleChange}
                 style={{ display: "none" }}
               />
               <label htmlFor="file-input" style={{ cursor: "pointer" }}>
@@ -121,7 +186,7 @@ const TweetEditor = ({}) => {
             </div>
 
             <div>
-              <ThemeButton className={styles.tweet} onClick={onSubmit}>
+              <ThemeButton className={styles.tweet} onClick={handleUpload}>
                 Tweet
               </ThemeButton>
             </div>

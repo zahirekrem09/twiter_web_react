@@ -8,7 +8,7 @@ import TweetEditor from "../components/TweetEditor";
 
 import { data } from "../data";
 
-import db from "../firebase/firebase";
+import { db } from "../firebase/firebase";
 
 import { TimelineProp } from "../components/icons";
 
@@ -17,10 +17,12 @@ function HomePage() {
 
   useEffect(() => {
     // firebase db  connect
-    db.collection("posts").onSnapshot((snapshot) => {
-      const postsData = snapshot.docs.map((doc) => doc.data());
-      setPosts(postsData);
-    });
+    db.collection("posts")
+      .orderBy("datetime", "desc")
+      .onSnapshot((snapshot) => {
+        const postsData = snapshot.docs.map((doc) => doc.data());
+        setPosts(postsData);
+      });
   }, []);
   return (
     <Layout>
@@ -33,7 +35,7 @@ function HomePage() {
           key={i}
           name={post.name}
           slug={post.slug}
-          // datetime={post.datetime}
+          datetime={post.datetime.toDate()}
           text={post.text}
           avatar={post.avatar_img}
           photo={post.tweet_img}
