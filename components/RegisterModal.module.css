@@ -1,0 +1,88 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* theme lihgt oldugunda modal arka planı duzelecek */
+.overlay:global(html.light) .overlay {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.overlay:global(html.light) {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--c-border-color);
+  background-color: var(--c-primary);
+  border-radius: 20px;
+  box-shadow: 0 10px 5px 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+  min-height: 200px;
+  position: relative;
+  z-index: 9999;
+}
+
+.header {
+  padding: 10px;
+  border-bottom: 1px solid var(--c-theme-10);
+  align-items: center;
+  text-align: center;
+}
+
+.header svg {
+  font-size: 42px;
+}
+
+.body {
+  display: flex;
+  gap: 15px;
+  padding: 30px;
+  flex-direction: column;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid rgb(136, 153, 166);
+  background-color: var(--c-bg-primary);
+  margin-top: 20px;
+}
+
+.inputContainer span {
+  font-size: 15px;
+  padding: 5px 10px 10px;
+  text-align: left;
+  color: rgb(136, 153, 166);
+}
+
+.inputContainer input {
+  width: 100%;
+  background-color: transparent;
+  color: var(--c-text-color);
+  padding: 3px 10px 5px;
+  font-size: 19px;
+}
+
+.btnContainer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.btnContainer .btn {
+  padding-left: 30px;
+  padding-right: 30px;
+}

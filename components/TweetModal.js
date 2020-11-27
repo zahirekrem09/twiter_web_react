@@ -4,6 +4,8 @@ import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import Avatar from "./Avatar";
 
+import TweetEditor from "./TweetEditor";
+
 import IconButton from "./IconButton";
 import {
   Close,
@@ -37,9 +39,9 @@ const TweetModal = ({ onModalClose = () => {} }) => {
           <IconButton className={styles.close} onClick={onModalClose}>
             <Close />
           </IconButton>
-        </div>
+          <TweetEditor />
 
-        <div className={styles.body}>
+          {/* <div className={styles.body}>
           <div className={styles.avatar}>
             <Avatar />
           </div>
@@ -95,6 +97,7 @@ const TweetModal = ({ onModalClose = () => {} }) => {
               </div>
             </div>
           </div>
+        </div> */}
         </div>
       </div>
     </div>

@@ -1,0 +1,167 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "left" "right";
+}
+
+.left {
+  background-color: rgb(122, 204, 254);
+  width: 100%;
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left .icon {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.left .icon svg {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.left .icon span {
+  font-size: 19px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.right {
+  height: calc(100vh - 100px);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.headerSub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid rgb(136, 153, 166);
+  background-color: var(--c-bg-primary);
+  margin-right: 15px;
+}
+
+.inputContainer span {
+  font-size: 15px;
+  padding: 5px 10px 10px;
+  text-align: left;
+  color: rgb(136, 153, 166);
+}
+
+.inputContainer input {
+  width: 100%;
+  background-color: transparent;
+  color: var(--c-text-color);
+  padding: 3px 10px 5px;
+  font-size: 19px;
+}
+
+.header .btn {
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+  padding: 0px 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  max-width: 380px;
+
+  margin-top: 100px;
+}
+
+.content svg {
+  font-size: 42px;
+}
+
+.text {
+  margin-top: 20px;
+}
+
+.text span {
+  color: var(--c-text-color);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.subtext {
+  margin-top: 55px;
+  margin-bottom: 15px;
+}
+
+.subtext span {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-text-color);
+}
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.btnContainer .btnfull {
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+  width: 100%;
+}
+
+@media only screen and (min-width: 990px) {
+  .layout {
+  }
+}
+
+.nav {
+  display: flex;
+  padding-left: 15px;
+  padding-right: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 70px;
+}
+
+.nav a {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 13px;
+  overflow-wrap: break-word;
+  font-weight: 400;
+  cursor: pointer;
+  color: rgb(136, 153, 166);
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.cpy p {
+  color: rgb(136, 153, 166);
+  font-size: 13px;
+  font-weight: 400;
+}

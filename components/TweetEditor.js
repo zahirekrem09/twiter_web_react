@@ -27,28 +27,23 @@ const TweetEditor = ({}) => {
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
+      // console.log(e.target.files[0].name);
       setImage(e.target.files[0]);
     }
   };
 
   const handleUpload = async () => {
     const id = uuid();
-
     const storageRef = storage.ref(`images/${id}`);
-    // const imageRef = firebase
-    //   .database()
-    //   .ref("posts")
-    //   .child("tweet_img")
-    //   .child(id);
     await storageRef.put(image);
-
+    console.log();
     storageRef.getDownloadURL().then((url) => {
       db.collection("posts").add({
         datetime: firebase.firestore.FieldValue.serverTimestamp(),
         avatar_img:
           "https://pbs.twimg.com/profile_images/1180781660247379968/BVoqMOft_400x400.jpg",
         textTweet: textTweet,
-        tweet_img: url,
+        tweet_img: url ? url : null,
         name: "ekrem",
         slug: "ekrem12",
         tweetInfo: { like: null, reply: null, retweet: null },
@@ -56,34 +51,22 @@ const TweetEditor = ({}) => {
     });
     setImage(null);
     setTextTweet("");
+  };
 
-    // uploadTask.on(
-    //   "state_changed",
-    //   (err) => {
-    //     console.error(err);
-    //     alert(err.message);
-    //   },
-    //   () => {
-    //     storage
-    //       .ref("images")
-    //       .child(image.name)
-    //       .getDownloadURL()
-    //       .then((url) => {
-    //         db.collection("posts").add({
-    //           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    //           textTweet: textTweet,
-    //           tweet_img: url,
-    //           name: "ekrem",
-    //           slug: "ekrem12",
-    //           avatar_img:
-    //             "https://pbs.twimg.com/profile_images/1001759983363641344/pJANPf_h_400x400.jpg",
-    //         });
-
-    //         setImage(null);
-    //         setTextTweet("");
-    //       });
-    //   }
-    // );
+  const addTweet = (e) => {
+    e.preventDefault();
+    db.collection("posts").add({
+      datetime: firebase.firestore.FieldValue.serverTimestamp(),
+      avatar_img:
+        "https://pbs.twimg.com/profile_images/1180781660247379968/BVoqMOft_400x400.jpg",
+      textTweet: textTweet,
+      tweet_img: null,
+      name: "ekrem",
+      slug: "ekrem12",
+      tweetInfo: { like: null, reply: null, retweet: null },
+    });
+    setImage(null);
+    setTextTweet("");
   };
 
   const addEmoji = (e) => {
@@ -93,24 +76,7 @@ const TweetEditor = ({}) => {
     let emoji = String.fromCodePoint(...codesArray);
     setTextTweet(textTweet + emoji);
   };
-  const onSubmit = () => {
-    alert(textTweet);
-  };
 
-  // Create a reference to the hidden file input element
-  // const hiddenFileInput = React.useRef(null);
-
-  // // Programatically click the hidden file input element
-  // // when the Button component is clicked
-  // const handleClick = (event) => {
-  //   hiddenFileInput.current.click();
-  // };
-  // // Call a function (passed as a prop from the parent component)
-  // // to handle the user-selected file
-  // const handleChange = (event) => {
-  //   const fileUploaded = event.target.files[0];
-  //   props.handleFile(fileUploaded);
-  // };
   return (
     <div className={styles.body}>
       <div className={styles.avatar}>
@@ -176,6 +142,7 @@ const TweetEditor = ({}) => {
                       position: "absolute",
                       top: "50px",
                       left: "30px",
+                      zIndex: 999,
                     }}
                   />
                 )}
@@ -186,12 +153,19 @@ const TweetEditor = ({}) => {
             </div>
 
             <div>
-              <ThemeButton className={styles.tweet} onClick={handleUpload}>
+              <ThemeButton
+                className={styles.tweet}
+                onClick={(e) => (image ? handleUpload(e) : addTweet(e))}
+              >
                 Tweet
               </ThemeButton>
             </div>
           </div>
         )}
+        <div>
+          {image?.name}
+          <img src={image} alt="" />
+        </div>
       </div>
     </div>
   );
