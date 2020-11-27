@@ -1,20 +1,58 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import StoreContext from "../store";
 import cn from "classnames";
 import useWindowSize from "../hooks/useWindowSize";
 import styles from "./HomeLayout.module.css";
+import { auth, db, storage } from "../firebase/firebase";
 
 import { Search, Reply, Profile, Twitter } from "./icons";
 import ThemeButton from "./ThemeButton";
 import RegisterModal from "./RegisterModal";
+import { useFormik } from "formik";
 
 function HomeLayout({ children }) {
+  const router = useRouter();
   const size = useWindowSize();
   const store = useContext(StoreContext);
   const [showRegister, setShowRegister] = useState(false);
+  const [user, setUser] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+
+    onSubmit: (values) => {
+      auth
+        .signInWithEmailAndPassword(formik.values.email, formik.values.password)
+        .catch((err) => setErrMsg(err.message));
+    },
+  });
   const onModalClose = () => {
     setShowRegister(!showRegister);
   };
+
+  useEffect(() => {
+    // auth connect
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
+
+  useEffect(() => {
+    console.log(user);
+    user ? router.push("/home") : null;
+  }, [user]);
 
   return (
     <div className={cn(styles.contanier)}>
@@ -36,16 +74,34 @@ function HomeLayout({ children }) {
         <div className={cn(styles.right)}>
           <div className={cn(styles.header)}>
             <div className={cn(styles.headerSub)}>
-              <div className={cn(styles.inputContainer)}>
-                <span> e posta</span>
-                <input type="text" />
-              </div>
-              <div className={cn(styles.inputContainer)}>
-                <span> e posta</span>
-                <input type="text" />
-              </div>
+              <form
+                action=""
+                className={cn(styles.headerSub)}
+                onSubmit={formik.handleSubmit}
+              >
+                <div className={cn(styles.inputContainer)}>
+                  <span> e posta</span>
+                  <input
+                    type="email"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                    name="email"
+                  />
+                </div>
+                <div className={cn(styles.inputContainer)}>
+                  <span> password</span>
+                  <input
+                    type="password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    name="password"
+                  />
+                </div>
+                <ThemeButton type="submit" className={styles.btn}>
+                  Login
+                </ThemeButton>
+              </form>
             </div>
-            <ThemeButton className={styles.btn}>Login</ThemeButton>
           </div>
 
           <div className={cn(styles.content)}>

@@ -82,7 +82,18 @@
   margin-top: 40px;
 }
 
-.btnContainer .btn {
-  padding-left: 30px;
-  padding-right: 30px;
+.btn {
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+  padding: 0px 20px;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.close svg {
+  font-size: 28px;
 }

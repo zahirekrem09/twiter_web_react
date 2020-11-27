@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-area: "left";
 }
 
 .left .icon {
@@ -36,6 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  grid-area: "right";
 }
 
 .header {
@@ -130,19 +132,14 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 990px) {
-  .layout {
-  }
-}
-
 .nav {
   display: flex;
   padding-left: 15px;
   padding-right: 15px;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-
+  justify-content: center;
+  margin-bottom: 30px;
   min-height: 70px;
 }
 
@@ -154,6 +151,7 @@
   font-weight: 400;
   cursor: pointer;
   color: rgb(136, 153, 166);
+  margin-right: 10px;
 }
 
 .nav a:hover {
@@ -164,4 +162,44 @@
   color: rgb(136, 153, 166);
   font-size: 13px;
   font-weight: 400;
+}
+
+@media only screen and (max-width: 990px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .headerSub {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+  .inputContainer {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .header {
+  }
+
+  .left {
+    height: 100%;
+    padding-top: 40px;
+  }
+
+  .right {
+    height: 100%;
+    padding: 15px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: 40px;
+    margin-top: 50px;
+  }
 }

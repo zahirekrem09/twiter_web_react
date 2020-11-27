@@ -10,8 +10,6 @@ import Title from "./Title";
 import MoreModal from "./MoreModal";
 
 function Navigation({ flat = false }) {
-  const [showModal, setShowModal] = useState(false);
-
   const onModalClose = () => {
     setShowModal(!setShowModal);
   };
@@ -37,8 +35,6 @@ function Navigation({ flat = false }) {
           </MenuButton>
         );
       })}
-
-      {/* {showModal && <MoreModal />} */}
     </nav>
   );
 }
