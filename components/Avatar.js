@@ -4,7 +4,7 @@ import cn from "classnames";
 
 function Avatar({
   src = "https://pbs.twimg.com/profile_images/1180781660247379968/BVoqMOft_400x400.jpg",
-  alt = "Ekrem",
+  alt = "avatar",
   size = 47,
   className,
   children,

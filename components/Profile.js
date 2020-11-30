@@ -1,39 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import ThemeButton from "./ThemeButton";
 import styles from "./Profil.module.css";
 import Text from "./Text";
+import ProfileEditModal from "./ProfileEditModal";
+import { format, formatDistanceToNowStrict } from "date-fns";
 
-function Profil({
-  slug = "ekremsarı",
-  name = "Ekrem",
-  backdrop = "https://pbs.twimg.com/profile_banners/1180780272561934338/1570355340/600x200",
-  bio = "Sadece insan!!",
-}) {
+function Profil({ user }) {
+  const [showEditProfile, setShowEditProfile] = useState(false);
+
+  const onModalClose = () => {
+    setShowEditProfile(!showEditProfile);
+  };
+
+  // console.log(user);
+  // console.log(user?.create_date.toDate().toDateString());
   return (
     <div className={cn(styles.profile)}>
       <div className={cn(styles.backdrop)}>
-        <img className={cn(styles.backdropimg)} src={backdrop} alt="" />
+        <img
+          className={cn(styles.backdropimg)}
+          src={user?.backdrop_img}
+          alt="backdrop"
+        />
       </div>
-      <Avatar size={134} className={styles.avatar} />
+      <Avatar size={134} className={styles.avatar} src={user?.avatar_img} />
       <div className={cn(styles.body)}>
-        <ThemeButton href="/" className={styles.followbtn}>
-          <span> Edit profile </span>
+        <ThemeButton className={styles.followbtn} onClick={onModalClose}>
+          Edit profile
         </ThemeButton>
         <div className={styles.name}>
-          <Text bold>{name}</Text>
-          <Text className={styles.slug}>@{slug}</Text>
+          <Text bold>{user?.display_name}</Text>
+          <Text className={styles.slug}>@{user?.email.slice(0, 5)}</Text>
         </div>
 
-        <Text className={styles.bio}>{bio}</Text>
-        <Text className={styles.slug}> Joined October 2019</Text>
+        <Text className={styles.bio}>{user?.bio}</Text>
+        <Text className={styles.slug}>
+          {/* {user?.create_date.toDate().toDateString()} */}
+          Joined {user && format(user?.create_date.toDate(), "do  MMMM yyyy")}
+        </Text>
         <div className={styles.caption}>
           <span className={styles.follow}>
             <span>
               <Text bold className={styles.count}>
-                521
+                {user?.following.length}
               </Text>
             </span>
 
@@ -42,7 +54,7 @@ function Profil({
           <span>
             <span>
               <Text className={styles.count} bold>
-                192
+                {user?.followers.length}
               </Text>
             </span>
             <Text className={styles.slug}>Followers</Text>
@@ -71,6 +83,16 @@ function Profil({
           </Text>
         </Button>
       </div>
+      {showEditProfile && (
+        <ProfileEditModal
+          avatar={user?.avatar_img}
+          backdrop={user?.backdrop_img}
+          name={user?.display_name}
+          bio={user?.bio}
+          id={user?.id}
+          onModalClose={onModalClose}
+        />
+      )}
     </div>
   );
 }

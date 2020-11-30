@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { db, storage } from "../firebase/firebase";
+import React, { useContext, useState } from "react";
+import { auth, db, storage } from "../firebase/firebase";
 import firebase from "firebase";
 import { v4 as uuid } from "uuid";
 import TextareaAutosize from "react-textarea-autosize";
@@ -18,55 +18,81 @@ import {
 } from "../components/icons";
 import ThemeButton from "./ThemeButton";
 import styles from "./TweetEditor.module.css";
+import StoreContext from "../store";
 
 const TweetEditor = ({}) => {
   const [toggleEmoji, setToggleEmoji] = useState(false);
   const [textTweet, setTextTweet] = useState("");
+  const [imgTweet, setImgTweet] = useState("");
   const [image, setImage] = useState(null);
   const [showFooter, setShowFooter] = useState(false);
+  const [progress, setProgress] = useState("");
+
+  const { user } = useContext(StoreContext);
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
-      // console.log(e.target.files[0].name);
       setImage(e.target.files[0]);
     }
   };
 
-  const handleUpload = async () => {
-    const id = uuid();
-    const storageRef = storage.ref(`images/${id}`);
-    await storageRef.put(image);
-    console.log();
-    storageRef.getDownloadURL().then((url) => {
-      db.collection("posts").add({
-        datetime: firebase.firestore.FieldValue.serverTimestamp(),
-        avatar_img:
-          "https://pbs.twimg.com/profile_images/1180781660247379968/BVoqMOft_400x400.jpg",
-        textTweet: textTweet,
-        tweet_img: url ? url : null,
-        name: "ekrem",
-        slug: "ekrem12",
-        tweetInfo: { like: null, reply: null, retweet: null },
-      });
-    });
-    setImage(null);
-    setTextTweet("");
-  };
+  // const handleUpload = async () => {
+  //   if (image) {
+  //     const id = uuid();
+  //     const storageRef = storage.ref(`images/${id}`);
+  //     await storageRef.put(image);
+  //     storageRef.getDownloadURL().then((url) => {
+  //       console.log(url);
+  //       setImgTweet(url);
+  //     });
+  //   }
 
-  const addTweet = (e) => {
-    e.preventDefault();
-    db.collection("posts").add({
-      datetime: firebase.firestore.FieldValue.serverTimestamp(),
-      avatar_img:
-        "https://pbs.twimg.com/profile_images/1180781660247379968/BVoqMOft_400x400.jpg",
-      textTweet: textTweet,
-      tweet_img: null,
-      name: "ekrem",
-      slug: "ekrem12",
-      tweetInfo: { like: null, reply: null, retweet: null },
-    });
-    setImage(null);
-    setTextTweet("");
+  //   db.collection("posts").add({
+  //     datetime: firebase.firestore.FieldValue.serverTimestamp(),
+  //     textTweet: textTweet,
+  //     tweet_img: imgTweet,
+  //     tweetInfo: { like: null, reply: null, retweet: null },
+  //     userId: user?.id,
+  //   });
+
+  //   setImage(null);
+  //   setTextTweet("");
+  // };
+
+  const handleUpload = () => {
+    const id = uuid();
+    const uploadTask = storage.ref(`images/${id}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      (err) => {
+        console.error(err);
+        alert(err.message);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(id)
+          .getDownloadURL()
+          .then((url) => {
+            db.collection("posts").add({
+              datetime: firebase.firestore.FieldValue.serverTimestamp(),
+              textTweet: textTweet,
+              tweet_img: url,
+              tweetInfo: { like: null, reply: null, retweet: null },
+              userId: user?.id,
+            });
+            setProgress(0);
+            setImage(null);
+            setTextTweet("");
+          });
+      }
+    );
   };
 
   const addEmoji = (e) => {
@@ -80,7 +106,7 @@ const TweetEditor = ({}) => {
   return (
     <div className={styles.body}>
       <div className={styles.avatar}>
-        <Avatar />
+        <Avatar src={user?.avatar_img} />
       </div>
       <div className={styles.content}>
         <TextareaAutosize
@@ -155,7 +181,7 @@ const TweetEditor = ({}) => {
             <div>
               <ThemeButton
                 className={styles.tweet}
-                onClick={(e) => (image ? handleUpload(e) : addTweet(e))}
+                onClick={(e) => handleUpload(e)}
               >
                 Tweet
               </ThemeButton>
@@ -166,6 +192,13 @@ const TweetEditor = ({}) => {
           {image?.name}
           <img src={image} alt="" />
         </div>
+
+        {progress > 0 && (
+          <div className={styles.progress}>
+            <label htmlFor="file">Upload:</label>
+            <progress id="file" value={progress} max="100"></progress>
+          </div>
+        )}
       </div>
     </div>
   );

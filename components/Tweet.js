@@ -25,6 +25,8 @@ function Tweet({
     }, 1000);
   };
   // console.log(tweetInfo);
+
+  // TODO Tweet bilgileri userId ye gşre düzünlenecek avatar slug name
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>

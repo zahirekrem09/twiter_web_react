@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { auth, db, storage } from "../firebase/firebase";
 
 import "../styles/app.css";
 import "emoji-mart/css/emoji-mart.css";
@@ -8,6 +9,7 @@ export default function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [follow, setFollow] = useState(false);
+  const [user, setUser] = useState(null);
   const onModalClose = () => {
     setShowModal(false);
   };
@@ -29,6 +31,15 @@ export default function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
+    db.collection("users").onSnapshot((snapshot) => {
+      const users = snapshot.docs.map((doc) => doc.data());
+      const user = users.filter((us) => us.id == auth?.currentUser?.uid)[0];
+      console.log(user);
+      setUser(user);
+    });
+  }, [auth.currentUser]);
+
+  useEffect(() => {
     document.querySelector("html").classList.remove("light");
     document.querySelector("html").classList.remove("dark");
     document.querySelector("html").classList.remove("dim");
@@ -44,6 +55,7 @@ export default function MyApp({ Component, pageProps }) {
         onModalOpen,
         follow,
         onFollow,
+        user,
       }}
     >
       <Component {...pageProps} />

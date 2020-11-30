@@ -18,6 +18,7 @@ function LayoutSidebar({ flat }) {
   const store = useContext(StoreContext);
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const { user } = useContext(StoreContext);
   const handleLogout = () => {
     auth.signOut();
     router.push("/");
@@ -43,14 +44,19 @@ function LayoutSidebar({ flat }) {
       {/* tweetpop up */}
 
       <div className={styles.profile} onClick={() => setShowModal(!showModal)}>
-        <ProfilBox flat={flat} />
+        <ProfilBox
+          flat={flat}
+          name={user?.display_name}
+          avatar={user?.avatar_img}
+          slug={user?.display_name}
+        />
       </div>
       {showModal && (
         <ProfileModal
           logout={handleLogout}
-          name={auth.currentUser.displayName}
-          slug={auth.currentUser.displayName}
-          avatar={auth.currentUser.photoURL}
+          name={user?.display_name}
+          slug={user?.display_name}
+          avatar={user?.avatar_img}
         />
       )}
     </div>

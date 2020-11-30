@@ -38,3 +38,4 @@ export { default as Keyboard } from "./Keyboard";
 export { default as Moments } from "./Moments";
 export { default as Topics } from "./Topics";
 export { default as BigTweet } from "./BigTweet";
+export { default as Logout } from "./Logout";

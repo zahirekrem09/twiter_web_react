@@ -6,7 +6,7 @@
 .avatar img {
   width: 100%;
   display: block;
-  border-radius: 99px;
+  border-radius: 999px;
   border: 2px solid var(--c-border-color);
   text-align: center;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "emoji-mart/css/emoji-mart.css";
 
 import Layout from "../components/Layout";
@@ -11,11 +11,16 @@ import { db } from "../firebase/firebase";
 
 import { TimelineProp } from "../components/icons";
 
+import StoreContext from "../store";
+
 function HomePage() {
   const [posts, setPosts] = useState([]);
+  const { user } = useContext(StoreContext);
 
   useEffect(() => {
     // firebase db  connect
+
+    //TODO✅  add user and post collection
     db.collection("posts")
       .orderBy("datetime", "desc")
       .onSnapshot((snapshot) => {
@@ -33,11 +38,11 @@ function HomePage() {
       {posts?.map((post, i) => (
         <Tweet
           key={i}
-          name={post.name}
-          slug={post.slug}
+          name={user?.display_name}
+          slug={user?.display_name}
           datetime={post.datetime?.toDate()}
           text={post.textTweet}
-          avatar={post.avatar_img}
+          avatar={user?.avatar_img}
           photo={post.tweet_img}
           tweetInfo={post.tweetInfo}
         ></Tweet>

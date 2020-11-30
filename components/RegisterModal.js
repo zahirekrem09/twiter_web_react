@@ -4,6 +4,7 @@ import "emoji-mart/css/emoji-mart.css";
 
 import { useFormik } from "formik";
 import { auth, db, storage } from "../firebase/firebase";
+import firebase from "firebase";
 
 import { Close, Twitter } from "../components/icons";
 import ThemeButton from "./ThemeButton";
@@ -44,13 +45,27 @@ const RegisterModal = ({ onModalClose = () => {} }) => {
           formik.values.password
         )
         .then((authUser) => {
-          authUser.user.updateProfile({
-            displayName: formik.values.displayName,
+          // authUser.user.updateProfile({
+          //   displayName: formik.values.displayName,
+          // });
+
+          console.log(authUser.user.uid);
+          db.collection("users").doc(authUser.user.uid).set({
+            avatar_img:
+              "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
+            display_name: formik.values.displayName,
+            email: authUser.user.email,
+            bio: "",
+            backdrop_img: "https://via.placeholder.com/350x150",
+            id: authUser.user.uid,
+            following: [],
+            followers: [],
+            create_date: firebase.firestore.FieldValue.serverTimestamp(),
           });
         })
         .catch((err) => setErrMsg(err.message));
 
-      //   onModalClose();
+      onModalClose();
     },
   });
 
