@@ -7,8 +7,9 @@ import styles from "./Profil.module.css";
 import Text from "./Text";
 import ProfileEditModal from "./ProfileEditModal";
 import { format, formatDistanceToNowStrict } from "date-fns";
+import Tweet from "./Tweet";
 
-function Profil({ user }) {
+function Profil({ user, posts }) {
   const [showEditProfile, setShowEditProfile] = useState(false);
 
   const onModalClose = () => {
@@ -83,6 +84,20 @@ function Profil({ user }) {
           </Text>
         </Button>
       </div>
+      {posts?.map((post, i) => (
+        <Tweet
+          key={i}
+          // name={user?.display_name}
+          // slug={user?.display_name}
+          datetime={post.datetime?.toDate()}
+          text={post.textTweet}
+          // avatar={user?.avatar_img}
+          user={post.user}
+          photo={post.tweet_img}
+          tweetInfo={post.tweetInfo}
+          userId={post.userId}
+        ></Tweet>
+      ))}
       {showEditProfile && (
         <ProfileEditModal
           avatar={user?.avatar_img}

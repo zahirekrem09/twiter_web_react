@@ -38,13 +38,15 @@ function HomePage() {
       {posts?.map((post, i) => (
         <Tweet
           key={i}
-          name={user?.display_name}
-          slug={user?.display_name}
+          // name={user?.display_name}
+          // slug={user?.display_name}
           datetime={post.datetime?.toDate()}
           text={post.textTweet}
-          avatar={user?.avatar_img}
+          // avatar={user?.avatar_img}
+          user={post.user}
           photo={post.tweet_img}
           tweetInfo={post.tweetInfo}
+          userId={post.userId}
         ></Tweet>
       ))}
 

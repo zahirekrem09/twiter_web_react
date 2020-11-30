@@ -17,6 +17,7 @@ function Tweet({
   text,
   children,
   datetime,
+  user,
 }) {
   const [showModal, setShowModal] = useState(false);
   const onModalClose = () => {
@@ -34,7 +35,7 @@ function Tweet({
           onMouseEnter={() => onModalClose()}
           // onMouseLeave={() => setShowModal(false)}
         >
-          <Avatar src={avatar} className={cn(styles.avatar)} />
+          <Avatar src={user?.avatar_img} className={cn(styles.avatar)} />
         </span>
       </div>
       <div
@@ -42,8 +43,8 @@ function Tweet({
         onMouseEnter={() => setShowModal(false)}
       >
         <header className={cn(styles.tweetHeader)}>
-          <span className={styles.name}>{name} </span>
-          <span className={styles.slug}>@{slug} - </span>
+          <span className={styles.name}>{user?.display_name} </span>
+          <span className={styles.slug}>@{user?.display_name} - </span>
           <span className={styles.date}>
             {datetime && formatDistanceToNowStrict(datetime)}
           </span>

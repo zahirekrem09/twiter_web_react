@@ -61,38 +61,49 @@ const TweetEditor = ({}) => {
 
   const handleUpload = () => {
     const id = uuid();
-    const uploadTask = storage.ref(`images/${id}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progress);
-      },
-      (err) => {
-        console.error(err);
-        alert(err.message);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(id)
-          .getDownloadURL()
-          .then((url) => {
-            db.collection("posts").add({
-              datetime: firebase.firestore.FieldValue.serverTimestamp(),
-              textTweet: textTweet,
-              tweet_img: url,
-              tweetInfo: { like: null, reply: null, retweet: null },
-              userId: user?.id,
+    if (image) {
+      const uploadTask = storage.ref(`images/${id}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
+        },
+        (err) => {
+          console.error(err);
+          alert(err.message);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(id)
+            .getDownloadURL()
+            .then((url) => {
+              db.collection("posts").add({
+                datetime: firebase.firestore.FieldValue.serverTimestamp(),
+                textTweet: textTweet,
+                tweet_img: url,
+                tweetInfo: { like: null, reply: null, retweet: null },
+                user: user,
+              });
+              setProgress(0);
+              setImage(null);
+              setTextTweet("");
             });
-            setProgress(0);
-            setImage(null);
-            setTextTweet("");
-          });
-      }
-    );
+        }
+      );
+    } else {
+      db.collection("posts").add({
+        datetime: firebase.firestore.FieldValue.serverTimestamp(),
+        textTweet: textTweet,
+        tweet_img: null,
+        tweetInfo: { like: null, reply: null, retweet: null },
+        user: user,
+      });
+      setTextTweet("");
+    }
   };
 
   const addEmoji = (e) => {
