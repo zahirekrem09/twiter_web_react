@@ -9,7 +9,8 @@ export default function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [follow, setFollow] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(auth.currentUser);
+  const [users, setUsers] = useState(null);
   const onModalClose = () => {
     setShowModal(false);
   };
@@ -33,8 +34,9 @@ export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
       const users = snapshot.docs.map((doc) => doc.data());
+      setUsers(users);
       const user = users.filter((us) => us.id == auth?.currentUser?.uid)[0];
-      console.log(user);
+      console.log("context user", user);
       setUser(user);
     });
   }, [auth.currentUser]);
@@ -56,6 +58,7 @@ export default function MyApp({ Component, pageProps }) {
         follow,
         onFollow,
         user,
+        users,
       }}
     >
       <Component {...pageProps} />

@@ -48,14 +48,14 @@ function LayoutSidebar({ flat }) {
           flat={flat}
           name={user?.display_name}
           avatar={user?.avatar_img}
-          slug={user?.display_name}
+          slug={user?.slug}
         />
       </div>
       {showModal && (
         <ProfileModal
           logout={handleLogout}
           name={user?.display_name}
-          slug={user?.display_name}
+          slug={user?.slug}
           avatar={user?.avatar_img}
         />
       )}

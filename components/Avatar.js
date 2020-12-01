@@ -16,7 +16,7 @@ function Avatar({
       style={{ width: size, height: size }}
       {...props}
     >
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} style={{ width: size, height: size }} />
     </div>
   );
 }

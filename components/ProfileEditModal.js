@@ -16,16 +16,17 @@ const ProfileEditModal = ({
   backdrop,
   bio,
   id,
+  slug,
 }) => {
   const [errMsg, setErrMsg] = useState(null);
   const [imgAvatar, setImgAvatar] = useState(null); //url
   const [imgBackdrop, setImgBackdrop] = useState(null);
   const [newName, setName] = useState(name);
   const [newBio, setBio] = useState(bio);
+  const [newSlug, setSlug] = useState(slug);
   const [avatar_url, setAvatar] = useState(null);
   const [backdrop_url, setBackdrop] = useState(null);
   const [progress, setProgress] = useState(0);
-  // const id = auth.currentUser.uid;
 
   const updateName = (e) => {
     setName(e.target.value);
@@ -33,6 +34,10 @@ const ProfileEditModal = ({
 
   const updateBio = (e) => {
     setBio(e.target.value);
+  };
+
+  const updateSlug = (e) => {
+    setSlug(e.target.value);
   };
 
   const handleBackdropChange = (e) => {
@@ -111,6 +116,8 @@ const ProfileEditModal = ({
     // });
   };
 
+  //TODO : İlk tıklayınca eklemiyor ikincide ekliyor.
+
   const add = async () => {
     await handleUpload().then(() =>
       db
@@ -120,6 +127,7 @@ const ProfileEditModal = ({
           avatar_img: avatar_url ? avatar_url : avatar,
           display_name: newName,
           bio: newBio,
+          slug: newSlug,
           backdrop_img: backdrop_url ? backdrop_url : backdrop,
         })
     );
@@ -165,7 +173,7 @@ const ProfileEditModal = ({
             >
               <IconButton
                 style={{ pointerEvents: "none" }}
-                onClick={() => alert("MEDİA ADD")}
+                // onClick={() => alert("MEDİA ADD")}
               >
                 <Media />
               </IconButton>
@@ -180,6 +188,13 @@ const ProfileEditModal = ({
             </label>
           </div>
 
+          {progress > 0 && (
+            <div className={styles.progress}>
+              <label htmlFor="file">Upload:</label>
+              <progress id="file" value={progress} max="100"></progress>
+            </div>
+          )}
+
           <div className={styles.content}>
             <div className={styles.inputContainer}>
               <span> Full Name</span>
@@ -187,6 +202,15 @@ const ProfileEditModal = ({
                 name="displayName"
                 type="text"
                 onChange={updateName}
+                // value={name}
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <span> Slug</span>
+              <input
+                name="slug"
+                type="text"
+                onChange={updateSlug}
                 // value={name}
               />
             </div>

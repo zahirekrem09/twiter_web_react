@@ -12,8 +12,9 @@ function ProfiCard({
   slug = "ekremsarı",
   name = "Ekrem",
   bio = "Sadece insan!!",
+  user,
 }) {
-  const { user } = useContext(StoreContext);
+  // const { user } = useContext(StoreContext);
   return (
     <div className={cn(styles.profile)}>
       <div className={cn(styles.header)}>
@@ -26,7 +27,7 @@ function ProfiCard({
       <div className={cn(styles.body)}>
         <div className={styles.name}>
           <Text bold>{user?.display_name}</Text>
-          <Text className={styles.slug}>@{user?.email.slice(0, 5)}</Text>
+          <Text className={styles.slug}>@{user?.slug}</Text>
         </div>
 
         <Text className={styles.bio}>{user?.bio}</Text>

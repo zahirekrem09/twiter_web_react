@@ -6,7 +6,7 @@ import ThemeButton from "./ThemeButton";
 import styles from "./Profil.module.css";
 import Text from "./Text";
 import ProfileEditModal from "./ProfileEditModal";
-import { format, formatDistanceToNowStrict } from "date-fns";
+import { format } from "date-fns";
 import Tweet from "./Tweet";
 
 function Profil({ user, posts }) {
@@ -15,9 +15,6 @@ function Profil({ user, posts }) {
   const onModalClose = () => {
     setShowEditProfile(!showEditProfile);
   };
-
-  // console.log(user);
-  // console.log(user?.create_date.toDate().toDateString());
   return (
     <div className={cn(styles.profile)}>
       <div className={cn(styles.backdrop)}>
@@ -34,13 +31,13 @@ function Profil({ user, posts }) {
         </ThemeButton>
         <div className={styles.name}>
           <Text bold>{user?.display_name}</Text>
-          <Text className={styles.slug}>@{user?.email.slice(0, 5)}</Text>
+          <Text className={styles.slug}>@{user?.slug}</Text>
         </div>
 
         <Text className={styles.bio}>{user?.bio}</Text>
         <Text className={styles.slug}>
           {/* {user?.create_date.toDate().toDateString()} */}
-          Joined {user && format(user?.create_date.toDate(), "do  MMMM yyyy")}
+          Joined {user && format(user?.create_date?.toDate(), "do  MMMM yyyy")}
         </Text>
         <div className={styles.caption}>
           <span className={styles.follow}>
@@ -87,11 +84,9 @@ function Profil({ user, posts }) {
       {posts?.map((post, i) => (
         <Tweet
           key={i}
-          // name={user?.display_name}
-          // slug={user?.display_name}
           datetime={post.datetime?.toDate()}
           text={post.textTweet}
-          // avatar={user?.avatar_img}
+          postUser={user}
           user={post.user}
           photo={post.tweet_img}
           tweetInfo={post.tweetInfo}
@@ -105,6 +100,7 @@ function Profil({ user, posts }) {
           name={user?.display_name}
           bio={user?.bio}
           id={user?.id}
+          slug={user?.slug}
           onModalClose={onModalClose}
         />
       )}

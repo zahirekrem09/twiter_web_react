@@ -15,7 +15,7 @@ import StoreContext from "../store";
 
 function HomePage() {
   const [posts, setPosts] = useState([]);
-  const { user } = useContext(StoreContext);
+  const { user, users } = useContext(StoreContext);
 
   useEffect(() => {
     // firebase db  connect
@@ -29,6 +29,7 @@ function HomePage() {
         setPosts(postsData);
       });
   }, []);
+
   return (
     <Layout>
       <HeaderMain border icon={<TimelineProp />}>
@@ -42,11 +43,11 @@ function HomePage() {
           // slug={user?.display_name}
           datetime={post.datetime?.toDate()}
           text={post.textTweet}
-          // avatar={user?.avatar_img}
-          user={post.user}
+          postId={post?.id}
+          postUser={users?.filter((us) => us.id == post.user.id)[0]}
           photo={post.tweet_img}
           tweetInfo={post.tweetInfo}
-          userId={post.userId}
+          // userId={user?.id}
         ></Tweet>
       ))}
 

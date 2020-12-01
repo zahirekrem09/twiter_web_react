@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { formatDistanceToNowStrict } from "date-fns";
 import Avatar from "./Avatar";
 import styles from "./Tweet.module.css";
 import cn from "classnames";
 import IconButton from "./IconButton";
 import * as Icon from "../components/icons";
-import { urlObjectKeys } from "next/dist/next-server/lib/utils";
 import ProfiCard from "./ProfilCard";
-
+import { db } from "../firebase/firebase";
+//  datetime={post.datetime?.toDate()}
+//           text={post.textTweet}
+//           postId={post?.id}
+//           postUserId={post.user.id}
+//           photo={post.tweet_img}
+//           tweetInfo={post.tweetInfo}
+//           userId={user?.id}
 function Tweet({
   tweetInfo,
-  avatar,
   photo,
-  name,
-  slug,
-  text,
-  children,
   datetime,
-  user,
+  postUser,
+  text,
+  userId,
+  postId,
+  children,
 }) {
   const [showModal, setShowModal] = useState(false);
   const onModalClose = () => {
@@ -25,9 +30,32 @@ function Tweet({
       setShowModal(true);
     }, 1000);
   };
-  // console.log(tweetInfo);
 
-  // TODO Tweet bilgileri userId ye gşre düzünlenecek avatar slug name
+  // TODO Delete tweet
+
+  // const delTweet = async () => {
+  //   if (userId === user.id) {
+  //     // await db.collection("posts").doc(`${postId}`).delete();
+  //     // res?.forEach((element) => {
+  //     //   element.ref.delete();
+  //     //   console.log(`deleted: ${element.id}`);
+  //     // });
+
+  //     db.collection("posts")
+  //       .doc(postId)
+  //       .delete()
+  //       .then(function () {
+  //         console.log("Document successfully deleted!");
+  //       })
+  //       .catch(function (error) {
+  //         console.error("Error removing document: ", error);
+  //       });
+  //   }
+  // };
+
+  const deleteFromFireStore = async () => {
+    await db.collection("posts").doc(postId).delete();
+  };
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>
@@ -35,7 +63,11 @@ function Tweet({
           onMouseEnter={() => onModalClose()}
           // onMouseLeave={() => setShowModal(false)}
         >
-          <Avatar src={user?.avatar_img} className={cn(styles.avatar)} />
+          <Avatar
+            size={50}
+            src={postUser?.avatar_img}
+            className={cn(styles.avatar)}
+          />
         </span>
       </div>
       <div
@@ -43,8 +75,8 @@ function Tweet({
         onMouseEnter={() => setShowModal(false)}
       >
         <header className={cn(styles.tweetHeader)}>
-          <span className={styles.name}>{user?.display_name} </span>
-          <span className={styles.slug}>@{user?.display_name} - </span>
+          <span className={styles.name}>{postUser?.display_name} </span>
+          <span className={styles.slug}>@{postUser?.slug} - </span>
           <span className={styles.date}>
             {datetime && formatDistanceToNowStrict(datetime)}
           </span>
@@ -89,10 +121,10 @@ function Tweet({
           </div>
         </footer>
       </div>
-      <IconButton className={styles.more}>
+      <IconButton className={styles.more} onClick={deleteFromFireStore}>
         <Icon.More2 />
       </IconButton>
-      {showModal && <ProfiCard />}
+      {showModal && <ProfiCard user={postUser} />}
     </article>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./LayoutExtra.module.css";
 import cn from "classnames";
@@ -6,10 +6,21 @@ import SearchBox from "./Searcbox";
 import Lists from "./Lists";
 import Trends from "./Trends";
 import FollowSuggestion from "./FollowSuggestion";
+import { db } from "../firebase/firebase";
 
 function LayoutExtra({ children }) {
   const router = useRouter();
   console.log(router.pathname);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // firebase db  connect
+    db.collection("users").onSnapshot((snapshot) => {
+      const usersData = snapshot.docs.map((doc) => doc.data());
+      console.log(usersData);
+      setUsers(usersData);
+    });
+  }, []);
   return (
     <section className={cn(styles.extra)}>
       {/* searchbox */}
@@ -33,9 +44,9 @@ function LayoutExtra({ children }) {
 
       {/* Who to follow */}
       <Lists title="Who to follow">
-        <FollowSuggestion />
-        <FollowSuggestion />
-        <FollowSuggestion />
+        {users.map((user) => (
+          <FollowSuggestion key={user.id} user={user} />
+        ))}
       </Lists>
 
       {/* footer */}
