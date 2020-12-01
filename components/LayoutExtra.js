@@ -10,14 +10,14 @@ import { db } from "../firebase/firebase";
 
 function LayoutExtra({ children }) {
   const router = useRouter();
-  console.log(router.pathname);
+  // console.log(router.pathname);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     // firebase db  connect
     db.collection("users").onSnapshot((snapshot) => {
       const usersData = snapshot.docs.map((doc) => doc.data());
-      console.log(usersData);
+      // console.log(usersData);
       setUsers(usersData);
     });
   }, []);

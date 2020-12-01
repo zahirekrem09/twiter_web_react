@@ -54,7 +54,27 @@ function Tweet({
   // };
 
   const deleteFromFireStore = async () => {
-    await db.collection("posts").doc(postId).delete();
+    //TODO: Modal eklenerek delete yapılacak
+    if (userId == postUser.id) {
+      await db.collection("posts").doc(postId).delete();
+    } else {
+      alert("Do not permision");
+    }
+  };
+
+  const addLikes = () => {
+    db.collection("posts")
+      .doc(postId)
+      .update({
+        "tweetInfo.like": tweetInfo.like?.push(userId),
+      });
+  };
+  const addRetweets = () => {
+    db.collection("posts")
+      .doc(postId)
+      .update({
+        "tweetInfo.retweet": tweetInfo.retweet?.push(userId),
+      });
   };
   return (
     <article className={cn(styles.tweet)}>
@@ -103,13 +123,13 @@ function Tweet({
             {tweetInfo.reply && <span>{tweetInfo.reply}</span>}
           </div>
           <div className={cn(styles.tweetFooterIcon)}>
-            <IconButton className={styles.icon}>
+            <IconButton className={styles.icon} onClick={addRetweets}>
               <Icon.Retweet />
             </IconButton>
             {tweetInfo.retweet && <span>{tweetInfo.retweet}</span>}
           </div>
           <div className={cn(styles.tweetFooterIcon)}>
-            <IconButton className={styles.icon}>
+            <IconButton className={styles.icon} onClick={addLikes}>
               <Icon.Like />
             </IconButton>
             {tweetInfo.like && <span>{tweetInfo.like}</span>}
@@ -124,7 +144,14 @@ function Tweet({
       <IconButton className={styles.more} onClick={deleteFromFireStore}>
         <Icon.More2 />
       </IconButton>
-      {showModal && <ProfiCard user={postUser} />}
+      {showModal && (
+        <ProfiCard
+          user={postUser}
+          // // onMouseEnter={() => onModalClose()}
+          // // onMouseLeave={() => setShowModal(false)}
+          // onModalClose={onModalClose}
+        />
+      )}
     </article>
   );
 }

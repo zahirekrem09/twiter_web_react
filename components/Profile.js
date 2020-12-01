@@ -43,6 +43,7 @@ function Profil({ user, posts }) {
           <span className={styles.follow}>
             <span>
               <Text bold className={styles.count}>
+                {/* {Array.from(new Set(user?.followers)).length} */}
                 {user?.following.length}
               </Text>
             </span>

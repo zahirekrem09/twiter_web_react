@@ -82,6 +82,7 @@
   color: var(--c-theme);
   border: 1px solid var(--c-theme);
   padding: 0px 20px;
+  transition: 200ms all;
 }
 
 .content {
@@ -127,9 +128,17 @@
 }
 .btnContainer .btnfull {
   background-color: transparent;
-  color: var(--c-theme);
+  color: var(--c-theme) !important;
   border: 1px solid var(--c-theme);
   width: 100%;
+  transition: 200ms all;
+}
+/* .btnContainer .btnfull span {
+  color: var(--c-theme);
+} */
+
+.btnContainer .btnfull:hover {
+  color: #fff !important;
 }
 
 .nav {

@@ -8,9 +8,9 @@ import styles from "./UnfollowModal.module.css";
 const textValue =
   "Their Tweets will no longer show up in your home timeline. You can still view their profileü unless their Tweets are protected";
 
-const UnfollowModal = ({ follow, onModalClose, onFollow }) => {
+const UnfollowModal = ({ follow, onModalClose, RemoveFollowing }) => {
   const unFollowClick = () => {
-    onFollow();
+    RemoveFollowing();
     onModalClose();
   };
   return (

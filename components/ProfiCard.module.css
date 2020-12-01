@@ -67,9 +67,16 @@
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
+.followbtn {
+  height: 30px;
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+  transition: all 200ms;
+}
 .followingbtn {
   transition: all 200ms;
+  height: 30px;
 }
 
 .followingbtn:hover {

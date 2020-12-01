@@ -25,8 +25,12 @@ function HomePage() {
       .orderBy("datetime", "desc")
       .onSnapshot((snapshot) => {
         const postsData = snapshot.docs.map((doc) => doc.data());
-        console.log(postsData);
-        setPosts(postsData);
+        const postIds = snapshot.docs.map((doc) => doc.id);
+        const newPostData = postsData.map((item, i) => {
+          return { ...item, id: postIds[i] };
+        });
+        // console.log("newPostData", newPostData);
+        setPosts(newPostData);
       });
   }, []);
 
@@ -47,7 +51,7 @@ function HomePage() {
           postUser={users?.filter((us) => us.id == post.user.id)[0]}
           photo={post.tweet_img}
           tweetInfo={post.tweetInfo}
-          // userId={user?.id}
+          userId={user?.id}
         ></Tweet>
       ))}
 

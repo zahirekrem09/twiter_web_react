@@ -85,7 +85,7 @@ const TweetEditor = ({}) => {
                 datetime: firebase.firestore.FieldValue.serverTimestamp(),
                 textTweet: textTweet,
                 tweet_img: url,
-                tweetInfo: { like: null, reply: null, retweet: null },
+                tweetInfo: { like: [], reply: [], retweet: [] },
                 user: user,
               });
               setProgress(0);
@@ -99,7 +99,7 @@ const TweetEditor = ({}) => {
         datetime: firebase.firestore.FieldValue.serverTimestamp(),
         textTweet: textTweet,
         tweet_img: null,
-        tweetInfo: { like: null, reply: null, retweet: null },
+        tweetInfo: { like: [], reply: [], retweet: [] },
         user: user,
       });
       setTextTweet("");
