@@ -139,6 +139,7 @@
 
 .btnContainer .btnfull:hover {
   color: #fff !important;
+  background-color: var(--c-theme) !important;
 }
 
 .nav {
