@@ -70,3 +70,26 @@
   right: 20px;
   z-index: 100;
 }
+
+.followingbtn {
+  background-color: transparent;
+  color: var(--c-theme);
+  border: 1px solid var(--c-theme);
+  position: absolute;
+  top: -60px;
+  right: 20px;
+  z-index: 100;
+  transition: all 200ms;
+}
+
+.followingbtn:hover {
+  background-color: #ca2055 !important;
+}
+
+.followingbtn:hover span {
+  display: none;
+}
+
+.followingbtn:hover:before {
+  content: "Unfollow!" !important;
+}

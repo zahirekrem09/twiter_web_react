@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { formatDistanceToNowStrict } from "date-fns";
 import Avatar from "./Avatar";
 import styles from "./Tweet.module.css";
@@ -7,13 +8,7 @@ import IconButton from "./IconButton";
 import * as Icon from "../components/icons";
 import ProfiCard from "./ProfilCard";
 import { db } from "../firebase/firebase";
-//  datetime={post.datetime?.toDate()}
-//           text={post.textTweet}
-//           postId={post?.id}
-//           postUserId={post.user.id}
-//           photo={post.tweet_img}
-//           tweetInfo={post.tweetInfo}
-//           userId={user?.id}
+
 function Tweet({
   tweetInfo,
   photo,
@@ -79,16 +74,20 @@ function Tweet({
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>
-        <span
-          onMouseEnter={() => onModalClose()}
-          // onMouseLeave={() => setShowModal(false)}
-        >
-          <Avatar
-            size={50}
-            src={postUser?.avatar_img}
-            className={cn(styles.avatar)}
-          />
-        </span>
+        <Link href="/users/[id]" as={`/users/${postUser.id}`}>
+          <span
+            onMouseEnter={() => onModalClose()}
+            // onMouseLeave={() => setShowModal(false)}
+          >
+            <a className={styles.link}>
+              <Avatar
+                size={50}
+                src={postUser?.avatar_img}
+                className={cn(styles.avatar)}
+              />
+            </a>
+          </span>
+        </Link>
       </div>
       <div
         className={cn(styles.tweetBody)}

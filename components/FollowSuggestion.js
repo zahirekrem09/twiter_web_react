@@ -11,7 +11,6 @@ import UnfollowModal from "./UnfollowModal";
 import { db } from "../firebase/firebase";
 
 function FollowSuggestion({ user }) {
-  //   const [follow, setFollow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const store = useContext(StoreContext);
   const onModalClose = () => {
@@ -27,33 +26,17 @@ function FollowSuggestion({ user }) {
     }
   };
 
-  const addFollowers = () => {
-    db.collection("users")
-      .doc(store.user.id)
-      .update({
-        followers: [...store.user.followers, user.id],
-      });
-    const list = store.user.followers.filter((fol) => fol == user.id);
-    console.log(list);
-    console.log(isFollow());
-  };
-  // const addFollowers = async () => {
-  // await  db.collection("users")
+  // const addFollowers = () => {
+  //   db.collection("users")
   //     .doc(store.user.id)
   //     .update({
   //       followers: [...store.user.followers, user.id],
   //     });
-  //     await db
-  //       .collection("users")
-  //       .doc(user.id)
-  //       .update({
-  //         followers: [...store.user.followers, user.id],
-  //       });
-
   //   const list = store.user.followers.filter((fol) => fol == user.id);
   //   console.log(list);
   //   console.log(isFollow());
   // };
+
   const addFollowing = async () => {
     await db
       .collection("users")
@@ -87,7 +70,11 @@ function FollowSuggestion({ user }) {
   return (
     <div className={cn(styles.content)}>
       <div className={cn(styles.profilBox)}>
-        <Button className={cn(styles.avatarbtn)}>
+        <Button
+          href="/users/[id]"
+          as={`/users/${user.id}`}
+          className={cn(styles.avatarbtn)}
+        >
           <Avatar
             src={user?.avatar_img}
             size={39}
