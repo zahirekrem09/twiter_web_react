@@ -74,7 +74,7 @@ function Tweet({
   return (
     <article className={cn(styles.tweet)}>
       <div className={cn(styles.tweetAvatar)}>
-        <Link href="/users/[id]" as={`/users/${postUser.id}`}>
+        <Link href="/users/[id]" as={`/users/${postUser?.id}`}>
           <span
             onMouseEnter={() => onModalClose()}
             // onMouseLeave={() => setShowModal(false)}

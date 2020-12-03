@@ -7,7 +7,7 @@ import IconButton from "./IconButton";
 import Title from "./Title";
 // import Link from "next/link";
 
-function Lists({ title, icon, children, src }) {
+function Lists({ title, icon, children, src, showMore }) {
   return (
     <div className={cn(styles.lists)}>
       <div className={cn(styles.item, !icon && styles.single)}>
@@ -20,7 +20,7 @@ function Lists({ title, icon, children, src }) {
       <div className={cn(styles.body)}>{children}</div>
 
       <div className={cn(styles.more)}>
-        <a to={src}>Show more</a>
+        <a to={src}> Show more</a>
       </div>
     </div>
   );

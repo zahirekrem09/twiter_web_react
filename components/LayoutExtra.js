@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./LayoutExtra.module.css";
 import cn from "classnames";
@@ -12,6 +12,13 @@ function LayoutExtra({ children }) {
   const router = useRouter();
   // console.log(router.pathname);
   const [users, setUsers] = useState([]);
+  // const [fusers, setFusers] = useState([]);
+
+  // const showMore = () => {
+  //   setFusers([...fusers, users.slice(fusers.length, fusers.length + 5)]);
+  // };
+
+  // console.log(fusers);
 
   useEffect(() => {
     // firebase db  connect
@@ -21,6 +28,10 @@ function LayoutExtra({ children }) {
       setUsers(usersData);
     });
   }, []);
+
+  // useLayoutEffect(() => {
+  //   showMore();
+  // }, []);
   return (
     <section className={cn(styles.extra)}>
       {/* searchbox */}

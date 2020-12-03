@@ -19,7 +19,7 @@ function FollowSuggestion({ user }) {
 
   const isFollow = () => {
     // const list = store.user.followers.filter((fol) => fol == user.id);
-    if (store.user.following.includes(user.id)) {
+    if (store.user?.following.includes(user.id)) {
       return true;
     } else {
       return false;
