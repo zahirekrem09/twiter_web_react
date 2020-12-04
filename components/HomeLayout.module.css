@@ -70,7 +70,7 @@
 }
 
 .inputContainer input {
-  width: 100%;
+  /* width: 100%; */
   background-color: transparent;
   color: var(--c-text-color);
   padding: 3px 10px 5px;
@@ -133,9 +133,13 @@
   width: 100%;
   transition: 200ms all;
 }
-/* .btnContainer .btnfull span {
-  color: var(--c-theme);
-} */
+.error {
+  margin-top: 8px;
+  color: red;
+  text-align: left;
+  display: block;
+  font-weight: bold;
+}
 
 .btnContainer .btnfull:hover {
   color: #fff !important;

@@ -5,11 +5,22 @@ import cn from "classnames";
 import useWindowSize from "../hooks/useWindowSize";
 import styles from "./HomeLayout.module.css";
 import { auth, db, storage } from "../firebase/firebase";
-
+import * as Yup from "yup";
 import { Search, Reply, Profile, Twitter } from "./icons";
 import ThemeButton from "./ThemeButton";
 import RegisterModal from "./RegisterModal";
 import { useFormik } from "formik";
+
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: Yup.string().required("Please enter your password"),
+  // .matches(
+  //   /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+  //   "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+  // ),
+});
 
 function HomeLayout({ children }) {
   const router = useRouter();
@@ -30,6 +41,7 @@ function HomeLayout({ children }) {
         .signInWithEmailAndPassword(formik.values.email, formik.values.password)
         .catch((err) => setErrMsg(err.message));
     },
+    validationSchema: validationSchema,
   });
   const onModalClose = () => {
     setShowRegister(!showRegister);
@@ -79,31 +91,52 @@ function HomeLayout({ children }) {
                 className={cn(styles.headerSub)}
                 onSubmit={formik.handleSubmit}
               >
-                <div className={cn(styles.inputContainer)}>
-                  <span> e posta</span>
-                  <input
-                    type="email"
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
-                    name="email"
-                  />
+                <div>
+                  <div className={cn(styles.inputContainer)}>
+                    <span> e posta</span>
+                    <input
+                      type="email"
+                      onChange={formik.handleChange}
+                      value={formik.values.email}
+                      name="email"
+                      {...formik.getFieldProps("email")}
+                    />
+                  </div>
+                  {formik.touched.email && formik.errors.email ? (
+                    <span className={cn(styles.error)}>
+                      {formik.errors.email}
+                    </span>
+                  ) : null}
                 </div>
-                <div className={cn(styles.inputContainer)}>
-                  <span> password</span>
-                  <input
-                    type="password"
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
-                    name="password"
-                  />
+                <div>
+                  <div className={cn(styles.inputContainer)}>
+                    <span> password</span>
+                    <input
+                      type="password"
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                      name="password"
+                      maxLength={15}
+                      {...formik.getFieldProps("password")}
+                    />
+                  </div>
+                  {formik.touched.password && formik.errors.password ? (
+                    <div className={cn(styles.error)}>
+                      {formik.errors.password}
+                    </div>
+                  ) : null}
                 </div>
-                <ThemeButton type="submit" className={styles.btn}>
+                <ThemeButton
+                  type="submit"
+                  disabled={!(formik.isValid && formik.dirty)}
+                  className={styles.btn}
+                >
                   Login
                 </ThemeButton>
               </form>
             </div>
           </div>
-
+          <span className={cn(styles.error)}> {errMsg}</span>
           <div className={cn(styles.content)}>
             <Twitter />
             <div className={cn(styles.text)}>

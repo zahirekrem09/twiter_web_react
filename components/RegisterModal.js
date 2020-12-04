@@ -5,28 +5,26 @@ import "emoji-mart/css/emoji-mart.css";
 import { useFormik } from "formik";
 import { auth, db, storage } from "../firebase/firebase";
 import firebase from "firebase";
-
+import * as Yup from "yup";
 import { Close, Twitter } from "../components/icons";
 import ThemeButton from "./ThemeButton";
 import styles from "./RegisterModal.module.css";
 import IconButton from "./IconButton";
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.displayName) {
-    errors.displayName = "Required";
-  } else if (values.displayName.length > 15) {
-    errors.displayName = "Must be 15 characters or less";
-  }
-
-  if (!values.email) {
-    errors.email = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
-  }
-
-  return errors;
-};
+const validationSchema = Yup.object({
+  displayName: Yup.string()
+    .required("Display Name is required")
+    .min(3, "Name must be at least 3 characters"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: Yup.string()
+    .required("Please enter your password")
+    .matches(
+      /^.*(?=.{6,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "Password must contain at least 6 characters, one uppercase, one number and one special case character"
+    ),
+});
 
 const RegisterModal = ({ onModalClose = () => {} }) => {
   const [errMsg, setErrMsg] = useState(null);
@@ -37,7 +35,7 @@ const RegisterModal = ({ onModalClose = () => {} }) => {
       email: "",
       password: "",
     },
-    validate,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       auth
         .createUserWithEmailAndPassword(
@@ -67,7 +65,7 @@ const RegisterModal = ({ onModalClose = () => {} }) => {
         })
         .catch((err) => setErrMsg(err.message));
 
-      onModalClose();
+      // onModalClose();
     },
   });
 
@@ -91,8 +89,14 @@ const RegisterModal = ({ onModalClose = () => {} }) => {
                   type="text"
                   onChange={formik.handleChange}
                   value={formik.values.displayName}
+                  {...formik.getFieldProps("displayName")}
                 />
               </div>
+              {formik.touched.displayName && formik.errors.displayName ? (
+                <span className={styles.error}>
+                  {formik.errors.displayName}
+                </span>
+              ) : null}
               <div className={styles.inputContainer}>
                 <span> Email</span>
                 <input
@@ -100,8 +104,12 @@ const RegisterModal = ({ onModalClose = () => {} }) => {
                   onChange={formik.handleChange}
                   value={formik.values.email}
                   name="email"
+                  {...formik.getFieldProps("email")}
                 />
               </div>
+              {formik.touched.email && formik.errors.email ? (
+                <span className={styles.error}>{formik.errors.email}</span>
+              ) : null}
               <div className={styles.inputContainer}>
                 <span> Password</span>
                 <input
@@ -109,14 +117,23 @@ const RegisterModal = ({ onModalClose = () => {} }) => {
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   name="password"
+                  {...formik.getFieldProps("password")}
                 />
               </div>
+              {formik.touched.password && formik.errors.password ? (
+                <span className={styles.error}>{formik.errors.password}</span>
+              ) : null}
               <div className={styles.btnContainer}>
-                <ThemeButton type="submit" className={styles.btn}>
+                <ThemeButton
+                  type="submit"
+                  disabled={!(formik.isValid && formik.dirty)}
+                  className={styles.btn}
+                >
                   Register
                 </ThemeButton>
               </div>
             </form>
+            <span className={styles.error}> {errMsg}</span>
           </div>
         </div>
       </div>

@@ -67,11 +67,18 @@
 }
 
 .inputContainer input {
-  width: 100%;
+  /* width: 100%; */
   background-color: transparent;
   color: var(--c-text-color);
   padding: 3px 10px 5px;
   font-size: 19px;
+}
+.error {
+  margin-top: 8px;
+  color: red;
+  text-align: left;
+  display: block;
+  font-weight: bold;
 }
 
 .btnContainer {
