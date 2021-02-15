@@ -23,7 +23,7 @@ export default function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    const theme = localStorage.getItem("THEME") || "light";
+    const theme = localStorage.getItem("THEME") || "dim";
     setTheme(theme);
   }, []);
   const changeTheme = (theme) => {
